@@ -1,0 +1,6 @@
+
+Fixed fields:
+  patchesJson6902 -> patches
+  patchesStrategicMerge -> patches
+  commonLabels -> labels
+  vars -> replacements
