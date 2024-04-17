@@ -5505,7 +5505,7 @@ metadata:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/version: "1.10.2"
 spec:
-  minAvailable: 50%
+  minAvailable: 80%
   selector:
     matchLabels:
       app: activator
@@ -5520,7 +5520,6 @@ metadata:
     app.kubernetes.io/version: "1.10.2"
     app.kubernetes.io/name: knative-serving
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: activator
@@ -6099,7 +6098,7 @@ metadata:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/version: "1.10.2"
 spec:
-  minAvailable: 50%
+  minAvailable: 80%
   selector:
     matchLabels:
       app: webhook
@@ -6114,7 +6113,6 @@ metadata:
     app.kubernetes.io/version: "1.10.2"
     app.kubernetes.io/name: knative-serving
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: webhook
