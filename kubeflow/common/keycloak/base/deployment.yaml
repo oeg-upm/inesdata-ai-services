@@ -19,7 +19,7 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:24.0.2
           args: ["start", "--health-enabled=true"]
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
                 name: keycloak-secret
@@ -33,7 +33,3 @@ spec:
 #            initialDelaySeconds: 30
 #            periodSeconds: 10
 #            failureThreshold: 5
-      # Change with your secret for pull Docker images from private Registry
-      # https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-      imagePullSecrets:
-        - name: regcred

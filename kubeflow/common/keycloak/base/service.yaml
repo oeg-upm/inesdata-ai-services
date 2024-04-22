@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: keycloak
+  clusterIP: 10.96.7.196
   ports:
     - name: http
       port: 8080
