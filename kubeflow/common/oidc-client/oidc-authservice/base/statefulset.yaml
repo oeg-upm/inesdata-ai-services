@@ -16,22 +16,26 @@ spec:
         app: authservice
     spec:
       serviceAccountName: authservice
+      hostAliases:
+        - ip: 10.96.7.196
+          hostnames:
+            - keycloak.kubeflow.inesdata.upm
       containers:
-      - name: authservice
-        image: gcr.io/arrikto/kubeflow/oidc-authservice:e236439
-        imagePullPolicy: Always
-        ports:
-        - name: http-api
-          containerPort: 8080
-        envFrom:
-          - secretRef:
-              name: oidc-authservice-client
-          - configMapRef:
-              name: oidc-authservice-parameters
-        volumeMounts:
-          - name: data
-            mountPath: /var/lib/authservice
-        readinessProbe:
+        - name: authservice
+          image: gcr.io/arrikto/kubeflow/oidc-authservice:e236439
+          imagePullPolicy: Always
+          ports:
+            - name: http-api
+              containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: oidc-authservice-client
+            - configMapRef:
+                name: oidc-authservice-parameters
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/authservice
+          readinessProbe:
             httpGet:
               path: /
               port: 8081
@@ -40,4 +44,4 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-              claimName: authservice-pvc
+            claimName: authservice-pvc

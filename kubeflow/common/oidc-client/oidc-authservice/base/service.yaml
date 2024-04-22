@@ -10,4 +10,8 @@ spec:
     - port: 8080
       name: http-authservice
       targetPort: http-api
+    - name: http-web
+      port: 8082
+      protocol: TCP
+      targetPort: http-web
   publishNotReadyAddresses: true
