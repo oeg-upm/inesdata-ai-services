@@ -78,7 +78,7 @@ data:
             "text": "Create a new Notebook server",
             "desc": "Notebook Servers",
             "link": "/jupyter/new?namespace=kubeflow"
-          },
+          }
         ],
         "documentationItems": [
           {

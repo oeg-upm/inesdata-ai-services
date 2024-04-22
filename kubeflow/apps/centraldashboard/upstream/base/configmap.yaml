@@ -15,6 +15,12 @@ data:
         },
         {
           "type": "item",
+          "link": "/tensorboards/",
+          "text": "Tensorboards",
+          "icon": "assessment"
+        },
+        {
+          "type": "item",
           "link": "/volumes/",
           "text": "Volumes",
           "icon": "device:storage"
@@ -24,6 +30,12 @@ data:
           "link": "/models/",
           "text": "Endpoints",
           "icon": "kubeflow:models"
+        },
+        {
+          "type": "item",
+          "link": "/katib/",
+          "text": "Experiments (AutoML)",
+          "icon": "kubeflow:katib"
         },
         {
           "type": "item",
@@ -79,6 +91,11 @@ data:
             "desc": "Notebook Servers",
             "link": "/jupyter/new?namespace=kubeflow"
           },
+          {
+            "text": "View Katib Experiments",
+            "desc": "Katib",
+            "link": "/katib/"
+          }
         ],
         "documentationItems": [
           {
