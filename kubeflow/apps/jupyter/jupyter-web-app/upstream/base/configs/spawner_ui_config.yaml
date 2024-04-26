@@ -287,7 +287,7 @@ spawnerFormDefaults:
   # PodDefaults
   ################################################################
   configurations:
-    readOnly: true
+    readOnly: false
 
     # the list of PodDefault names that are selected by default
     # (take care to ensure these PodDefaults exist in Profile Namespaces)
