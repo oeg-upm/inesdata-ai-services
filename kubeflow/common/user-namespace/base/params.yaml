@@ -3,3 +3,5 @@ varReference:
   kind: Profile
 - path: metadata/name
   kind: Profile
+- path: metadata/namespace
+  kind: PodDefault

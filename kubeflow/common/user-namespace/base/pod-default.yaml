@@ -1,24 +1,8 @@
-apiVersion: kubeflow.org/v1beta1
-kind: Profile
-metadata:
-  name: bbip
-spec:
-  owner:
-    kind: User
-    name: bbip@gmv.com
-  resourceQuotaSpec: # resource quota can be set optionally
-    hard:
-      cpu: "10"
-      memory: "16Gi"
-      requests.nvidia.com/gpu: "1"
-      persistentvolumeclaims: "2"
-      requests.storage: "20Gi"
----
 apiVersion: kubeflow.org/v1alpha1
 kind: PodDefault
 metadata:
   name: access-ml-pipeline
-  namespace: bbip
+  namespace: $(profile-name)
 spec:
   desc: Allow access to Kubeflow Pipelines
   selector:

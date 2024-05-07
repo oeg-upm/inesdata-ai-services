@@ -6,3 +6,11 @@ spec:
   owner:
     kind: User
     name: $(user)
+  resourceQuotaSpec: # resource quota can be set optionally
+    hard:
+      cpu: "10"
+      memory: "16Gi"
+      requests.nvidia.com/gpu: "0"
+      requests.nvidia.com/mig-3g.20gb: "0"
+      persistentvolumeclaims: "2"
+      requests.storage: "50Gi"
