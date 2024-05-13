@@ -131,9 +131,9 @@ spawnerFormDefaults:
       #  `uiName` - what will be displayed in the dropdown UI
       vendors:
         - limitsKey: "nvidia.com/gpu"
-          uiName: "XLarge GPU"
+          uiName: "GPU XL - 40GB"
         - limitsKey: "nvidia.com/mig-3g.20gb"
-          uiName: "Medium GPU"
+          uiName: "GPU M - 20GB"
 
       # the default value of the limit
       # (possible values: "none", "1", "2", "4", "8")
