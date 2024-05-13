@@ -9,33 +9,27 @@ data:
       "menuLinks": [
         {
           "type": "item",
-          "link": "/jupyter/",
-          "text": "Notebooks",
-          "icon": "book"
-        },
-        {
-          "type": "item",
           "link": "/volumes/",
           "text": "Volumes",
           "icon": "device:storage"
         },
         {
           "type": "item",
-          "link": "/kserve-endpoints/",
-          "text": "Endpoints",
-          "icon": "kubeflow:models"
-        },
-        {
-          "type": "item",
-          "text": "Experiments (KFP)",
-          "link": "/pipeline/#/experiments",
-          "icon": "done-all"
+          "link": "/jupyter/",
+          "text": "Notebooks",
+          "icon": "book"
         },
         {
           "type": "item",
           "link": "/pipeline/#/pipelines",
           "text": "Pipelines",
           "icon": "kubeflow:pipeline-centered"
+        },
+        {
+          "type": "item",
+          "text": "Experiments (KFP)",
+          "link": "/pipeline/#/experiments",
+          "icon": "done-all"
         },
         {
           "type": "item",
@@ -51,15 +45,9 @@ data:
         },
         {
           "type": "item",
-          "link": "/pipeline/#/artifacts",
-          "text": "Artifacts",
-          "icon": "editor:bubble-chart"
-        },
-        {
-          "type": "item",
-          "link": "/pipeline/#/executions",
-          "text": "Executions",
-          "icon": "av:play-arrow"
+          "link": "/kserve-endpoints/",
+          "text": "Endpoints",
+          "icon": "kubeflow:models"
         }
       ],
       "externalLinks": [ ],
