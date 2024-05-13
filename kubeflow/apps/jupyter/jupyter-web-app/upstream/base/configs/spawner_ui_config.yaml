@@ -79,13 +79,13 @@ spawnerFormDefaults:
   #    set on Notebooks spawned by this group, such that Istio injects the
   #    "X-RStudio-Root-Path" header to all request
   ################################################################
-  imageGroupTwo:
-    # the default container image
-    value: kubeflownotebookswg/rstudio-tidyverse:v1.8.0
+  # imageGroupTwo:
+  #   # the default container image
+  #   value: kubeflownotebookswg/rstudio-tidyverse:v1.8.0
 
-    # the list of available container images in the dropdown
-    options:
-      - kubeflownotebookswg/rstudio-tidyverse:v1.8.0
+  #   # the list of available container images in the dropdown
+  #   options:
+  #     - kubeflownotebookswg/rstudio-tidyverse:v1.8.0
 
   ################################################################
   # CPU Resources
