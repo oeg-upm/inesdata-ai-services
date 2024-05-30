@@ -291,11 +291,11 @@ modify_gpu_resources() {
   clear
   echo "KUBEFLOW ADMIN:"
   PS3='Type the GPU value to modify: '
-  options=("S - mig-1g.5GB" "L - mig-3g.20GB" "XL - 40 GB" "Cancel")
+  options=("S - mig-1g.5GB (Not supported yet)" "L - mig-3g.20GB" "XL - 40 GB" "Cancel")
   select opt in "${options[@]}"
   do
     case $opt in
-      "S - mig-1g.5GB")
+      "S - mig-1g.5GB (Not supported yet)")
         echo "mig-1g.5GB not supported yet"
         #read -p "Enter the new mig-1g.5GB value (e.g. 2): " new_value
         #kubectl patch profile $profile_name --type='json' -p="[{\"op\": \"replace\", \"path\": \"/spec/resourceQuotaSpec/hard/requests.nvidia.com~1mig-1g.5gb\", \"value\": \"$new_value\"}]"
