@@ -6,43 +6,30 @@ create_profile() {
 
   read -n1 -s -r -p "Press any key to continue"
   clear
-  read -p "Enter the profile name (e.g. company-user): " profile_name
-  read -p "Enter the profile owner (format user@company.com): " owner
-  read -p "Enter the amount of CPU: " cpu
-  read -p "Enter the amount of memory (e.g., 16Gi): " memory
-#  read -p "Enter the amount of GPUs S - mig-1g.5GB: " gpu_s
-  read -p "Enter the amount of GPUs L - mig-3g.20GB: " gpu_l
-  read -p "Enter the amount of GPUs XL - 40 GB: " gpu_xl
-  read -p "Enter the amount of storage (e.g., 100Gi): " storage
+  env_file="common/user-namespace/base/params.env"
+  
+  # get profile name to include in kubernetes
+  profile_name=$(grep '^profile-name=' "$env_file" | cut -d'=' -f2 | xargs)
+  owner=$(grep '^user=' "$env_file" | cut -d'=' -f2 | xargs)
+  cpu=$(grep '^cpu=' "$env_file" | cut -d'=' -f2 | xargs)
+  memory=$(grep '^memory=' "$env_file" | cut -d'=' -f2 | xargs)
+  #gpu_s=$(grep '^mig-gpu-5g=' "$env_file" | cut -d'=' -f2 | xargs)
+  gpu_l=$(grep '^mig-gpu-20g=' "$env_file" | cut -d'=' -f2 | xargs)
+  gpu_xl=$(grep '^gpu=' "$env_file" | cut -d'=' -f2 | xargs)
+  storage=$(grep '^storage=' "$env_file" | cut -d'=' -f2 | xargs)
 
-  echo "Profile name: '$profile_name'."
-  echo "Owner: '$owner'."
-  echo "CPU: '$cpu'."
-  echo "Memory: '$memory'."
-#  echo "GPU S - mig-1g.5GB: '$gpu_s'."
-  echo "GPU L - mig-3g.20GB: '$gpu_l'."
-  echo "GPU XL - 40 GB: '$gpu_xl'."
-  echo "Storage: '$storage'."
+  echo "Profile name: '$profile_name'"
+  echo "Owner: '$owner'"
+  echo "CPU: '$cpu'"
+  echo "Memory: '$memory'"
+#  echo "GPU S - mig-1g.5GB: '$gpu_s'"
+  echo "GPU L - mig-3g.20GB: '$gpu_l'"
+  echo "GPU XL - 40 GB: '$gpu_xl'"
+  echo "Storage: '$storage'"
+
   read -p "Confirm? [y/N]: " confirm
   if [[ $confirm == [yY] ]]; then
-    cat <<EOF | kubectl apply -f -
-apiVersion: kubeflow.org/v1beta1
-kind: Profile
-metadata:
-  name: $profile_name
-spec:
-  owner:
-    kind: User
-    name: $owner
-  resourceQuotaSpec:
-    hard:
-      cpu: "$cpu"
-      memory: "$memory"
-      requests.nvidia.com/gpu: "$gpu_xl"
-      requests.nvidia.com/mig-3g.20gb: "$gpu_l"
-      requests.storage: "$storage"
-EOF
-#      requests.nvidia.com/mig-1g.5gb: "$gpu_s" NOT SUPPORTED YET
+    kubectl apply -k common/user-namespace/base
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
     
