@@ -69,3 +69,58 @@ kubectl get pods -n auth
 kubectl get pods -n knative-serving
 kubectl get pods -n kubeflow
 kubectl get pods -n kubeflow-user-example-com
+
+# KUBEFLOW ADMIN script user guide:
+From kubeflow folder run ./kubeflow-admin.sh
+```sh
+./kubeflow-admin.sh
+```
+You will see the main menu:
+```sh
+KUBEFLOW ADMIN:
+1) Create user
+2) Delete user
+3) List users
+4) View user resources
+5) Modify user resources
+6) Exit
+Type an option: 
+```
+
+## Create user
+You must complete the kubeflow/common/user-namespace/base/params.env with the corresponding information.
+Then run kubeflow-admin.sh and type the '1' opcion.
+The script will remember that the user must be created on Keycloak before this step.
+After that, a confirmation screen will be shown with the profile data and you will have to confirm it. The user will be created on kubeflow.
+
+## Delete user
+Run kubeflow-admin.sh and type the '2' opcion.
+Type the profile name of the user to delete.
+A confirmation screen will be shown and you will have to confirm it. The user will be removed from kubeflow.
+Then you will have to remove the user on Keycloak.
+
+## List users
+Run kubeflow-admin.sh and type the '3' opcion.
+The script will show a list with registered user on kubeflow.
+
+## View user resources
+Run kubeflow-admin.sh and type the '4' opcion.
+Type the profile name of the user to see.
+The script will display a list of resources available to the requested user in kubeflow.
+
+## Modify user resources
+Run kubeflow-admin.sh and type the '5' opcion.
+Type the profile name of the user to modify.
+
+You will see the following menu:
+```sh
+KUBEFLOW ADMIN:
+Enter the profile name to modify: admin
+1) CPU
+2) Memory
+3) GPU
+4) Storage
+5) Cancel
+Type the resource to modify on admin profile: 
+```
+Then type the option to modify and select the value to be modified.
