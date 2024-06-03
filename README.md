@@ -126,14 +126,14 @@ Type an option:
 ## Create user
 You must complete the kubeflow/common/user-namespace/base/params.env with the corresponding information.
 
-Then run kubeflow-admin.sh and type the '1' opcion.
+Then run ``kubeflow-admin.sh`` and type the ``1`` opcion.
 
 The script will remember that the user must be created on Keycloak before this step.
 
 After that, a confirmation screen will be shown with the profile data and you will have to confirm it. The user will be created on kubeflow.
 
 ## Delete user
-Run kubeflow-admin.sh and type the '2' opcion.
+Run ``kubeflow-admin.sh`` and type the ``2`` opcion.
 
 Type the profile name of the user to delete.
 
@@ -142,19 +142,19 @@ A confirmation screen will be shown and you will have to confirm it. The user wi
 Then you will have to remove the user on Keycloak.
 
 ## List users
-Run kubeflow-admin.sh and type the '3' opcion.
+Run ``kubeflow-admin.sh`` and type the ``3`` opcion.
 
 The script will show a list with registered user on kubeflow.
 
 ## View user resources
-Run kubeflow-admin.sh and type the '4' opcion.
+Run ``kubeflow-admin.sh`` and type the ``4`` opcion.
 
 Type the profile name of the user to see.
 
 The script will display a list of resources available to the requested user in kubeflow.
 
 ## Modify user resources
-Run kubeflow-admin.sh and type the '5' opcion.
+Run ``kubeflow-admin.sh`` and type the ``5`` opcion.
 
 Type the profile name of the user to modify.
 
