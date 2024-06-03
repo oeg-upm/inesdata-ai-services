@@ -5,82 +5,106 @@
 ## Installation steps
 
 ### Intall Cert Manager:
+```sh
 kubectl apply -k common/cert-manager/cert-manager/base
-
 kubectl wait --for=condition=ready pod -l 'app in (cert-manager,webhook)' --timeout=180s -n cert-manager
-
 kubectl apply -k common/cert-manager/kubeflow-issuer/
+```
 
 ### Install Istio:
+```sh
 kubectl apply -k common/istio/istio-crds/base
-
 kubectl apply -k common/istio/istio-namespace/base
-
 kubectl apply -k common/istio/istio-install/base
+```
 
 ### Install AuthService:
+```sh
 kubectl apply -k common/oidc-client/oidc-authservice/base
+```
 
 ### Install Knative:
+```sh
 kubectl apply -k common/knative/knative-serving/overlays/gateways
-
 kubectl apply -k common/istio/cluster-local-gateway/base
+```
 
 ### Install Kubeflow Namespace:
+```sh
 kubectl apply -k common/kubeflow-namespace/base
+```
 
 ### Install Kubeflow Roles:
+```sh
 kubectl apply -k common/kubeflow-roles/base
+```
 
 ### Install Istio Resources:
+```sh
 kubectl apply -k common/istio/kubeflow-istio-resources/base
+```
 
 ### Install Kubeflow Pipelines:
+```sh
 kubectl apply -k apps/pipeline/upstream/env/cert-manager/platform-agnostic-multi-user
+```
 
 ### Install Kserve:
+```sh
 kubectl apply -k contrib/kserve/kserve
-
 kubectl apply -k contrib/kserve/models-web-app/overlays/kubeflow
+```
 
 ### Install Central Dashboard:
+```sh
 kubectl apply -k apps/centraldashboard/upstream/overlays/kserve
+```
 
 ### Install Admission Webhook:
+```sh
 kubectl apply -k apps/admission-webhook/upstream/overlays/cert-manager
+```
 
 ### Install Notebooks:
+```sh
 kubectl apply -k apps/jupyter/notebook-controller/upstream/overlays/kubeflow
-
 kubectl apply -k apps/jupyter/jupyter-web-app/upstream/overlays/istio
+```
 
 ### Install PVC Viewer Controller
+```sh
 kubectl apply -k apps/pvcviewer-controller/upstream/default
+```
 
 ### Install Profiles + KFAM
+```sh
 kubectl apply -k apps/profiles/upstream/overlays/kubeflow
+```
 
 ### Install Volumes Web App
+```sh
 kubectl apply -k apps/volumes-web-app/upstream/overlays/istio
+```
 
 ### Install User Namespace
+```sh
 kubectl apply -k common/user-namespace/base
+```
 
 ### Install Keycloak
+```sh
 kubectl apply -k common/keycloak/overlays/istio 
+```
 
 ### Check pods by namespace:
+```sh
 kubectl get pods -n cert-manager
-
 kubectl get pods -n istio-system
-
 kubectl get pods -n auth
-
 kubectl get pods -n knative-serving
-
 kubectl get pods -n kubeflow
-
 kubectl get pods -n kubeflow-user-example-com
+```
 
 # KUBEFLOW ADMIN script user guide:
 From kubeflow folder run ./kubeflow-admin.sh
