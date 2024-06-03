@@ -107,7 +107,7 @@ kubectl get pods -n kubeflow-user-example-com
 ```
 
 # KUBEFLOW ADMIN script user guide:
-From kubeflow folder run ./kubeflow-admin.sh
+From kubeflow folder run the following command:
 ```sh
 ./kubeflow-admin.sh
 ```
