@@ -30,6 +30,8 @@ create_profile() {
   read -p "Confirm? [y/N]: " confirm
   if [[ $confirm == [yY] ]]; then
     kubectl apply -k common/user-namespace/base
+    sleep 3
+    kubectl apply -k common/user-namespace/base
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
     
