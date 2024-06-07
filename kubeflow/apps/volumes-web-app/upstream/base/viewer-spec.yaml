@@ -28,6 +28,10 @@ podSpec:
       volumeMounts:
         - name: viewer-volume
           mountPath: /srv
+      resources:
+        requests:
+          cpu: 10m
+          memory: 70Mi
       workingDir: /srv
       securityContext:
         allowPrivilegeEscalation: false

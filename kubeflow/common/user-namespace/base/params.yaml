@@ -1,6 +1,18 @@
 varReference:
 - path: spec/owner/name
   kind: Profile
+- path: spec/resourceQuotaSpec/hard/cpu
+  kind: Profile
+- path: spec/resourceQuotaSpec/hard/memory
+  kind: Profile
+- path: spec/resourceQuotaSpec/hard/requests.nvidia.com\/gpu
+  kind: Profile
+- path: spec/resourceQuotaSpec/hard/requests.nvidia.com\/mig-3g.20gb
+  kind: Profile
+#- path: spec/resourceQuotaSpec/hard/requests.nvidia.com\/mig-1g.5gb
+#  kind: Profile
+- path: spec/resourceQuotaSpec/hard/requests.storage
+  kind: Profile
 - path: metadata/name
   kind: Profile
 - path: metadata/namespace
