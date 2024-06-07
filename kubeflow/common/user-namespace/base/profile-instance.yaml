@@ -8,9 +8,9 @@ spec:
     name: $(user)
   resourceQuotaSpec: # resource quota can be set optionally
     hard:
-      cpu: "8"
-      memory: "16Gi"
-      requests.nvidia.com/gpu: "0"
-      requests.nvidia.com/mig-3g.20gb: "0"
-      persistentvolumeclaims: "2"
-      requests.storage: "100Gi"
+      cpu: $(cpu)
+      memory: $(memory)
+      requests.nvidia.com/gpu: $(gpu)
+      requests.nvidia.com/mig-3g.20gb: $(mig-gpu-20g)
+#      requests.nvidia.com/mig-1g.5gb: $(mig-gpu-5g)
+      requests.storage: $(storage)

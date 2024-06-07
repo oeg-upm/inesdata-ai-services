@@ -26,5 +26,47 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.profile-name
+- name: cpu
+  objref:
+    kind: ConfigMap
+    name: default-install-config
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.cpu
+- name: memory
+  objref:
+    kind: ConfigMap
+    name: default-install-config
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.memory
+- name: gpu
+  objref:
+    kind: ConfigMap
+    name: default-install-config
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.gpu
+- name: mig-gpu-20g
+  objref:
+    kind: ConfigMap
+    name: default-install-config
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.mig-gpu-20g
+#- name: mig-gpu-5g
+#  objref:
+#    kind: ConfigMap
+#    name: default-install-config
+#    apiVersion: v1
+#  fieldref:
+#    fieldpath: data.mig-gpu-5g
+- name: storage
+  objref:
+    kind: ConfigMap
+    name: default-install-config
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.storage
 configurations:
 - params.yaml
