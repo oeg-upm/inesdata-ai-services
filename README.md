@@ -115,11 +115,13 @@ You will see the main menu:
 ```sh
 KUBEFLOW ADMIN:
 1) Create user
-2) Delete user
-3) List users
-4) View user resources
-5) Modify user resources
-6) Exit
+2) Import user list
+3) Delete user
+4) Delete user list
+5) List users
+6) View user resources
+7) Modify user resources
+8) Exit
 Type an option: 
 ```
 
@@ -132,8 +134,24 @@ The script will remember that the user must be created on Keycloak before this s
 
 After that, a confirmation screen will be shown with the profile data and you will have to confirm it. The user will be created on kubeflow.
 
+## Import user list
+You need to create a ``common/user-namespace/base/import_users.csv`` with the following format befor start the process:
+``
+user,profile-name,cpu,memory,gpu,mig-gpu-20g,storage
+user0@company.com,user0,8,16Gi,0,0,100Gi
+user1@company.com,user1,4,32Gi,1,0,50Gi
+
+``
+Note: make a blank line at the end of file.
+
+Then run ``kubeflow-admin.sh`` and type the ``2`` opcion.
+
+A confirmation screen will be shown befor start the import. The users will be created on kubeflow.
+
+After that the script will remember that the user must be created on Keycloak before this step.
+
 ## Delete user
-Run ``kubeflow-admin.sh`` and type the ``2`` opcion.
+Run ``kubeflow-admin.sh`` and type the ``3`` opcion.
 
 Type the profile name of the user to delete.
 
@@ -141,20 +159,36 @@ A confirmation screen will be shown and you will have to confirm it. The user wi
 
 Then you will have to remove the user on Keycloak.
 
+## Delete user list
+Run ``kubeflow-admin.sh`` and type the ``4`` opcion.
+
+You need to create a ``common/user-namespace/base/delete_users.csv`` with the following format befor start the process:
+``
+profile-name
+user0
+user1
+
+``
+Note: make a blank line at the end of file.
+
+A confirmation screen will be shown and you will have to confirm it. The users will be removed from kubeflow.
+
+Then you will have to remove the user on Keycloak.
+
 ## List users
-Run ``kubeflow-admin.sh`` and type the ``3`` opcion.
+Run ``kubeflow-admin.sh`` and type the ``5`` opcion.
 
 The script will show a list with registered user on kubeflow.
 
 ## View user resources
-Run ``kubeflow-admin.sh`` and type the ``4`` opcion.
+Run ``kubeflow-admin.sh`` and type the ``6`` opcion.
 
 Type the profile name of the user to see.
 
 The script will display a list of resources available to the requested user in kubeflow.
 
 ## Modify user resources
-Run ``kubeflow-admin.sh`` and type the ``5`` opcion.
+Run ``kubeflow-admin.sh`` and type the ``7`` opcion.
 
 Type the profile name of the user to modify.
 
