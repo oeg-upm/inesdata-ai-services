@@ -54,11 +54,77 @@ create_profile() {
   read -n1 -s -r -p "Press any key to continue"
 }
 
+# Function to import a list of user profiles
+import_profile_list(){
+  echo "NOTE: You need to create the 'common/user-namespace/base/import_users.csv' file with the user list with the following format before the import process:"
+  echo "user,profile-name,cpu,memory,gpu,mig-gpu-20g,storage"
+  echo "user@company.com,user,8,16Gi,0,0,100Gi"
+
+  read -n1 -s -r -p "Press any key to continue"
+  # CSV file with users and their resources
+  USER_FILE="common/user-namespace/base/import_users.csv"
+
+  echo
+  echo "NOTE: Users must be created on Keycloak before this."
+  read -p "Confirm to import '$USER_FILE'? [y/N]: " confirm
+  if [[ $confirm == [yY] ]]; then
+    # Read the file line by line
+    tail -n +2 $USER_FILE | while IFS=, read -r user profile_name cpu memory gpu mig_gpu_20g storage
+    do
+      # Create the profile-instance.yaml file with the user's data
+      cat <<EOF > profile-instance-$profile_name.yaml
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  name: $profile_name
+spec:
+  owner:
+    kind: User
+    name: $user
+  resourceQuotaSpec: # resource quota can be set optionally
+    hard:
+      cpu: $cpu
+      memory: $memory
+      requests.nvidia.com/gpu: $gpu
+      requests.nvidia.com/mig-3g.20gb: $mig_gpu_20g
+
+      requests.storage: $storage
+EOF
+
+      # Apply the YAML file to the cluster
+      kubectl apply -f profile-instance-$profile_name.yaml
+      # Remove the generated YAML file
+      rm -rf profile-instance-$profile_name.yaml
+      
+      profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
+      
+      # Count the number of profiles
+      profile_count=$(echo $profiles | wc -w)
+
+      flag=0
+      for profile in $profiles; do
+        if [[ $profile == $profile_name ]]; then
+          echo "Profile '$profile_name' created successfully."
+          flag=1
+          break
+        fi
+      done
+      if [[ $flag == 0 ]]; then
+        echo "Error creating '$profile_name' profile."
+      fi
+    done
+  else
+    echo "Operation cancelled."
+  fi
+
+  read -n1 -s -r -p "Press any key to continue"
+}
+
 # Function to delete a profile
 delete_profile() {
   read -p "Enter the profile name to delete: " profile_name
 
-  read -p "Are you sure you want to delete the profile '$profile_name'? [y/N]: " confirm
+  read -p "Confirm to delete '$USER_FILE'? [y/N]: " confirm
   if [[ $confirm == [yY] ]]; then
     kubectl delete profile $profile_name
     # Verification
@@ -88,6 +154,56 @@ delete_profile() {
     done
 
     echo "Error: Could not verify the deletion of the profile '$profile_name' within the expected time. Please check manually."
+  else
+    echo "Operation cancelled."
+  fi
+
+  read -n1 -s -r -p "Press any key to continue"
+}
+
+delete_user_list(){
+  echo "NOTE: You need to create the 'common/user-namespace/base/delte_users.csv' file with the user list with the following format before the delete process:"
+  echo "profile-name"
+  echo "user"
+
+  read -n1 -s -r -p "Press any key to continue"
+
+  # CSV file with users and their resources
+  USER_FILE="common/user-namespace/base/delete_users.csv"
+
+  echo
+  read -p "Confirm to delete '$USER_FILE'? [y/N]: " confirm
+  if [[ $confirm == [yY] ]]; then
+    # Read the file line by line
+    tail -n +2 $USER_FILE | while IFS=, read -r profile_name
+    do
+      # Delete the profile from the cluster
+      kubectl delete profile $profile_name
+
+      # Verification
+      for i in {1..15}; do
+        sleep 1
+        profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
+      
+        # Count the number of profiles
+        profile_count=$(echo $profiles | wc -w)
+
+        flag=0
+        for profile in $profiles; do
+          if [[ $profile == $profile_name ]]; then
+            flag=1
+            break
+          fi
+        done
+        if [[ $flag == 1 ]]; then
+          echo "Error deleting '$profile_name' profile."
+        else
+          echo "Profile '$profile_name' not found or deleted successfully."
+          echo "NOTE: User must be deleted on Keycloak after this."
+        fi
+        break
+      done
+    done
   else
     echo "Operation cancelled."
   fi
@@ -440,7 +556,7 @@ show_menu() {
   while true; do
     clear
     echo "KUBEFLOW ADMIN:"
-    options=("Create user" "Delete user" "List users" "View user resources" "Modify user resources" "Exit")
+    options=("Create user" "Import user list" "Delete user" "Delete user list" "List users" "View user resources" "Modify user resources" "Exit")
     PS3='Type an option: '
     select opt in "${options[@]}"
     do
@@ -449,8 +565,16 @@ show_menu() {
           create_profile
           break
           ;;
+        "Import user list")
+          import_profile_list
+          break
+          ;;
         "Delete user")
           delete_profile
+          break
+          ;;
+        "Delete user list")
+          delete_user_list
           break
           ;;
         "List users")
