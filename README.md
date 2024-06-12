@@ -136,7 +136,7 @@ After that, a confirmation screen will be shown with the profile data and you wi
 
 ## Import user list
 You need to create a ``common/user-namespace/base/import_users.csv`` with the following format befor start the process:
-```
+```sh
 user,profile-name,cpu,memory,gpu,mig-gpu-20g,storage
 user0@company.com,user0,8,16Gi,0,0,100Gi
 user1@company.com,user1,4,32Gi,1,0,50Gi
@@ -163,7 +163,7 @@ Then you will have to remove the user on Keycloak.
 Run ``kubeflow-admin.sh`` and type the ``4`` opcion.
 
 You need to create a ``common/user-namespace/base/delete_users.csv`` with the following format befor start the process:
-```
+```sh
 profile-name
 user0
 user1
