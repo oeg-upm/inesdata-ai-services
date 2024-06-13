@@ -130,19 +130,18 @@ You must complete the kubeflow/common/user-namespace/base/params.env with the co
 
 Then run ``kubeflow-admin.sh`` and type the ``1`` opcion.
 
-The script will remember that the user must be created on Keycloak before this step.
-
 After that, a confirmation screen will be shown with the profile data and you will have to confirm it. The user will be created on kubeflow.
 
 ## Import user list
 You need to create a ``common/user-namespace/base/import_users.csv`` with the following format befor start the process:
 ```sh
-user,profile-name,cpu,memory,gpu,mig-gpu-20g,storage
-user0@company.com,user0,8,16Gi,0,0,100Gi
-user1@company.com,user1,4,32Gi,1,0,50Gi
+user,profile-name,kc-pass,cpu,memory,gpu,mig-gpu-20g,storage
+user0@company.com,user0,pass0,8,16Gi,0,0,100Gi
+user1@company.com,user1,pass1,4,32Gi,1,0,50Gi
 
 ```
 Note: make a blank line at the end of file.
+Note: kc-pass must be the keycloak password for each user
 
 Then run ``kubeflow-admin.sh`` and type the ``2`` opcion.
 
@@ -156,8 +155,6 @@ Run ``kubeflow-admin.sh`` and type the ``3`` opcion.
 Type the profile name of the user to delete.
 
 A confirmation screen will be shown and you will have to confirm it. The user will be removed from kubeflow.
-
-Then you will have to remove the user on Keycloak.
 
 ## Delete user list
 Run ``kubeflow-admin.sh`` and type the ``4`` opcion.
@@ -173,7 +170,6 @@ Note: make a blank line at the end of file.
 
 A confirmation screen will be shown and you will have to confirm it. The users will be removed from kubeflow.
 
-Then you will have to remove the user on Keycloak.
 
 ## List users
 Run ``kubeflow-admin.sh`` and type the ``5`` opcion.
