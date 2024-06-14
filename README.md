@@ -1,102 +1,102 @@
-# inesdata-ia-services
+# Inesdata-IA-Services
 
 
 
-## Installation steps
+## Pasos de instalación
 
-### Intall Cert Manager:
+### Intalar Cert Manager:
 ```sh
 kubectl apply -k common/cert-manager/cert-manager/base
 kubectl wait --for=condition=ready pod -l 'app in (cert-manager,webhook)' --timeout=180s -n cert-manager
 kubectl apply -k common/cert-manager/kubeflow-issuer/
 ```
 
-### Install Istio:
+### Intalar Istio:
 ```sh
 kubectl apply -k common/istio/istio-crds/base
 kubectl apply -k common/istio/istio-namespace/base
 kubectl apply -k common/istio/istio-install/base
 ```
 
-### Install AuthService:
+### Intalar AuthService:
 ```sh
 kubectl apply -k common/oidc-client/oidc-authservice/base
 ```
 
-### Install Knative:
+### Intalar Knative:
 ```sh
 kubectl apply -k common/knative/knative-serving/overlays/gateways
 kubectl apply -k common/istio/cluster-local-gateway/base
 ```
 
-### Install Kubeflow Namespace:
+### Intalar Kubeflow Namespace:
 ```sh
 kubectl apply -k common/kubeflow-namespace/base
 ```
 
-### Install Kubeflow Roles:
+### Intalar Kubeflow Roles:
 ```sh
 kubectl apply -k common/kubeflow-roles/base
 ```
 
-### Install Istio Resources:
+### Intalar Istio Resources:
 ```sh
 kubectl apply -k common/istio/kubeflow-istio-resources/base
 ```
 
-### Install Kubeflow Pipelines:
+### Intalar Kubeflow Pipelines:
 ```sh
 kubectl apply -k apps/pipeline/upstream/env/cert-manager/platform-agnostic-multi-user
 ```
 
-### Install Kserve:
+### Intalar Kserve:
 ```sh
 kubectl apply -k contrib/kserve/kserve
 kubectl apply -k contrib/kserve/models-web-app/overlays/kubeflow
 ```
 
-### Install Central Dashboard:
+### Intalar Central Dashboard:
 ```sh
 kubectl apply -k apps/centraldashboard/upstream/overlays/kserve
 ```
 
-### Install Admission Webhook:
+### Intalar Admission Webhook:
 ```sh
 kubectl apply -k apps/admission-webhook/upstream/overlays/cert-manager
 ```
 
-### Install Notebooks:
+### Intalar Notebooks:
 ```sh
 kubectl apply -k apps/jupyter/notebook-controller/upstream/overlays/kubeflow
 kubectl apply -k apps/jupyter/jupyter-web-app/upstream/overlays/istio
 ```
 
-### Install PVC Viewer Controller
+### Intalar PVC Viewer Controller
 ```sh
 kubectl apply -k apps/pvcviewer-controller/upstream/default
 ```
 
-### Install Profiles + KFAM
+### Intalar Profiles + KFAM
 ```sh
 kubectl apply -k apps/profiles/upstream/overlays/kubeflow
 ```
 
-### Install Volumes Web App
+### Intalar Volumes Web App
 ```sh
 kubectl apply -k apps/volumes-web-app/upstream/overlays/istio
 ```
 
-### Install User Namespace
+### Intalar User Namespace
 ```sh
 kubectl apply -k common/user-namespace/base
 ```
 
-### Install Keycloak
+### Intalar Keycloak
 ```sh
 kubectl apply -k common/keycloak/overlays/istio 
 ```
 
-### Check pods by namespace:
+### Comprobar PODs por cada namespace:
 ```sh
 kubectl get pods -n cert-manager
 kubectl get pods -n istio-system
@@ -106,12 +106,12 @@ kubectl get pods -n kubeflow
 kubectl get pods -n kubeflow-user-example-com
 ```
 
-# KUBEFLOW ADMIN script user guide:
-From kubeflow folder run the following command:
+# Guía de uso del script de administración de Kubeflow:
+Desde la carpeta kubeflow, lanzar el siguiente comando:
 ```sh
 ./kubeflow-admin.sh
 ```
-You will see the main menu:
+En pantalla se mostrará el menu principal:
 ```sh
 KUBEFLOW ADMIN:
 1) Create user
@@ -125,70 +125,67 @@ KUBEFLOW ADMIN:
 Type an option: 
 ```
 
-## Create user
-You must complete the kubeflow/common/user-namespace/base/params.env with the corresponding information.
+## Crear usuario
+Previamente debe existir el fichero ``kubeflow/common/user-namespace/base/params.env`` con la información correspondiente al perfil que se quiere crear.
 
-Then run ``kubeflow-admin.sh`` and type the ``1`` opcion.
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``1``.
 
-After that, a confirmation screen will be shown with the profile data and you will have to confirm it. The user will be created on kubeflow.
+Seguidamente, aparecerá una pantalla de confirmación con los datos del perfile y solicitará confirmacion para proceder a crear el usuario en Kubeflow y Keycloak.
 
-## Import user list
-You need to create a ``common/user-namespace/base/import_users.csv`` with the following format befor start the process:
+## Importar usuarios desde CSV
+Es necesario crear ``common/user-namespace/base/import_users.csv`` con el siguiente formato antes de continuar con el proceso:
 ```sh
 user,profile-name,kc-pass,cpu,memory,gpu,mig-gpu-20g,storage
 user0@company.com,user0,pass0,8,16Gi,0,0,100Gi
 user1@company.com,user1,pass1,4,32Gi,1,0,50Gi
 
 ```
-Note: make a blank line at the end of file.
-Note: kc-pass must be the keycloak password for each user
+NOTA: Dejar una linea en blanco al final del fichero
+NOTA 2: kc-pass sera la contraseña de acceso a Kubeflow que se creara al darse de alta en Keycloak.
 
-Then run ``kubeflow-admin.sh`` and type the ``2`` opcion.
+Seguidamente ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``2``.
 
-A confirmation screen will be shown befor start the import. The users will be created on kubeflow.
+Aparecerá una pantalla de confirmación antes de comenzar la importación.
 
-After that the script will remember that the user must be created on Keycloak before this step.
+## Eliminar usuario
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``3``.
 
-## Delete user
-Run ``kubeflow-admin.sh`` and type the ``3`` opcion.
+Escribir por teclado el nombre del perfil que se desea elinminar.
 
-Type the profile name of the user to delete.
+Aparecerá una pantalla de confirmación. Tras verificar la acción se procedera a eliminar el usuario de Kubeflow y Keycloak.
 
-A confirmation screen will be shown and you will have to confirm it. The user will be removed from kubeflow.
+## Eliminar una lista de usuarios
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``4``.
 
-## Delete user list
-Run ``kubeflow-admin.sh`` and type the ``4`` opcion.
-
-You need to create a ``common/user-namespace/base/delete_users.csv`` with the following format befor start the process:
+Es necesario crear ``common/user-namespace/base/delete_users.csv`` con el siguiente formato antes de continuar con el proceso:
 ```sh
 profile-name
 user0
 user1
 
 ```
-Note: make a blank line at the end of file.
+NOTA: Dejar una linea en blanco al final del fichero
 
-A confirmation screen will be shown and you will have to confirm it. The users will be removed from kubeflow.
+Aparecerá una pantalla de confirmación. Tras verificar la acción se procedera a eliminar los usuarios de Kubeflow y Keycloak.
 
+## Listar usuarios
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``5``.
 
-## List users
-Run ``kubeflow-admin.sh`` and type the ``5`` opcion.
+El script mostrara una lista con los usuarios dados de alta en Kubeflow.
 
-The script will show a list with registered user on kubeflow.
+## Ver recursos de usuario
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``6``.
 
-## View user resources
-Run ``kubeflow-admin.sh`` and type the ``6`` opcion.
+Escribir por teclado el nombre del perfil que se desea consultar.
 
-Type the profile name of the user to see.
+El script mostrara una lista con los recursos disponibles para el usuario solicitado en Kubeflow.
 
-The script will display a list of resources available to the requested user in kubeflow.
+## Modicar recursos de usuario
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``7``.
 
-## Modify user resources
-Run ``kubeflow-admin.sh`` and type the ``7`` opcion.
+Escribir por teclado el nombre del perfil que se desea modificar.
 
-Type the profile name of the user to modify.
-
-You will see the following menu:
+En pantalla se mostrará el siguiente menú:
 ```sh
 KUBEFLOW ADMIN:
 Enter the profile name to modify: admin
@@ -199,4 +196,7 @@ Enter the profile name to modify: admin
 5) Cancel
 Type the resource to modify on admin profile: 
 ```
-Then type the option to modify and select the value to be modified.
+Seguidamente seleccionar la opcion del recurso a modificar y seleccionar el valor deseado para ser aplicado.
+
+## Salir del administrador de Kubeflow
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``8``.
