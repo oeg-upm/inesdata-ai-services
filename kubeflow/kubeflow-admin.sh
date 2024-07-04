@@ -4,6 +4,7 @@
 create_profile() {
   clear
   env_file="common/user-namespace/base/params.env"
+  POD_NAME=keycloak-76498f4785-2jxg5
   
   # get profile name to include in kubernetes
   profile_name=$(grep '^profile-name=' "$env_file" | cut -d'=' -f2 | xargs)
@@ -34,8 +35,8 @@ create_profile() {
     read -p "Type the keycloack admin user: " kc_adm_user
     read -sp "Type the keycloak admin pass: " kc_adm_pass
     # login
-    kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
-    kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' --config /opt/keycloak/bin/kcadm.config'
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' --config /opt/keycloak/bin/kcadm.config'
 
     kubectl apply -k common/user-namespace/base
 
@@ -71,13 +72,13 @@ import_profile_list(){
   read -n1 -s -r -p "Press any key to continue"
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/import_users.csv"
-
+  POD_NAME=keycloak-76498f4785-2jxg5
   echo
   echo "You need to type the keycloak credentials to import users."
   read -p "Type the keycloack admin user: " kc_adm_user
   read -sp "Type the keycloak admin pass: " kc_adm_pass
   # login
-  kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
+  kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
 
   read -p "Confirm to import '$USER_FILE'? [y/N]: " confirm
   echo "*** CREATING USERS ***"
@@ -86,7 +87,7 @@ import_profile_list(){
     tail -n +2 $USER_FILE | while IFS=, read -r user profile_name kc_pass cpu memory gpu mig_gpu_20g storage
     do
 
-      kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' --config /opt/keycloak/bin/kcadm.config'
+      kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' --config /opt/keycloak/bin/kcadm.config'
 
       # Create the profile-instance.yaml file with the user's data
       cat <<EOF > profile-instance-$profile_name.yaml
@@ -141,18 +142,19 @@ EOF
 delete_profile() {
   read -p "Enter the profile name to delete: " profile_name
 
+  POD_NAME=keycloak-76498f4785-2jxg5
   read -p "Confirm to delete '$profile_name'? [y/N]: " confirm
   if [[ $confirm == [yY] ]]; then
     echo "You need to type the keycloak credentials to make this action."
     read -p "Type the keycloack admin user: " kc_adm_user
     read -sp "Type the keycloak admin pass: " kc_adm_pass
-    kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
     echo "*** DELETING USER ***"
     kubectl delete profile $profile_name
 
     # login
-    kc_user_id=$(kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh get users -r kubeflow -q username='$profile_name' --fields id --config /opt/keycloak/bin/kcadm.config' | grep -o '"id" : "[^"]*' | grep -o '[^"]*$')
-    kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh delete users/'$kc_user_id' -r kubeflow --config /opt/keycloak/bin/kcadm.config'
+    kc_user_id=$(kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh get users -r kubeflow -q username='$profile_name' --fields id --config /opt/keycloak/bin/kcadm.config' | grep -o '"id" : "[^"]*' | grep -o '[^"]*$')
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh delete users/'$kc_user_id' -r kubeflow --config /opt/keycloak/bin/kcadm.config'
 
     # Verification
     for i in {1..15}; do
@@ -196,12 +198,12 @@ delete_user_list(){
 
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/delete_users.csv"
-
+  POD_NAME=keycloak-76498f4785-2jxg5
   echo "You need to type the keycloak credentials to delete users."
   read -p "Type the keycloack admin user: " kc_adm_user
   read -sp "Type the keycloak admin pass: " kc_adm_pass
   # login
-  kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
+  kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
 
   read -p "Confirm to delete '$USER_FILE'? [y/N]: " confirm
   echo
@@ -212,8 +214,8 @@ delete_user_list(){
     do
       # Delete the profile from the cluster
       kubectl delete profile $profile_name
-      kc_user_id=$(kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh get users -r kubeflow -q username='$profile_name' --fields id --config /opt/keycloak/bin/kcadm.config' | grep -o '"id" : "[^"]*' | grep -o '[^"]*$')
-      kubectl exec -n auth keycloak-795dc7d75b-2zqts -- bash -c '/opt/keycloak/bin/kcadm.sh delete users/'$kc_user_id' -r kubeflow --config /opt/keycloak/bin/kcadm.config'
+      kc_user_id=$(kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh get users -r kubeflow -q username='$profile_name' --fields id --config /opt/keycloak/bin/kcadm.config' | grep -o '"id" : "[^"]*' | grep -o '[^"]*$')
+      kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh delete users/'$kc_user_id' -r kubeflow --config /opt/keycloak/bin/kcadm.config'
 
       # Verification
       for i in {1..15}; do
