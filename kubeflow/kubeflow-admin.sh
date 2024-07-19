@@ -36,8 +36,10 @@ create_profile() {
     read -sp "Type the keycloak admin pass: " kc_adm_pass
     # login
     kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
-    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' --config /opt/keycloak/bin/kcadm.config'
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' -t --config /opt/keycloak/bin/kcadm.config'
 
+    kubectl apply -k common/user-namespace/base
+    sleep 2
     kubectl apply -k common/user-namespace/base
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
@@ -63,6 +65,13 @@ create_profile() {
   read -n1 -s -r -p "Press any key to continue"
 }
 
+# Function to update param
+update_param() {
+    param=$1
+    new_value=$2
+    sed -i "s/^\($param *= *\).*/\1$new_value/" "$PARAMS_FILE"
+}
+
 # Function to import a list of user profiles
 import_profile_list(){
   echo "NOTE: You need to create the 'common/user-namespace/base/import_users.csv' file with the user list with the following format before the import process:"
@@ -72,6 +81,7 @@ import_profile_list(){
   read -n1 -s -r -p "Press any key to continue"
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/import_users.csv"
+  PARAMS_FILE="common/user-namespace/base/params.env"
   POD_NAME=keycloak-76498f4785-2jxg5
   echo
   echo "You need to type the keycloak credentials to import users."
@@ -87,33 +97,23 @@ import_profile_list(){
     tail -n +2 $USER_FILE | while IFS=, read -r user profile_name kc_pass cpu memory gpu mig_gpu_20g storage
     do
 
-      kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' --config /opt/keycloak/bin/kcadm.config'
+      kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' -t --config /opt/keycloak/bin/kcadm.config'
 
-      # Create the profile-instance.yaml file with the user's data
-      cat <<EOF > profile-instance-$profile_name.yaml
-apiVersion: kubeflow.org/v1beta1
-kind: Profile
-metadata:
-  name: $profile_name
-spec:
-  owner:
-    kind: User
-    name: $user
-  resourceQuotaSpec: # resource quota can be set optionally
-    hard:
-      cpu: $cpu
-      memory: $memory
-      requests.nvidia.com/gpu: $gpu
-      requests.nvidia.com/mig-3g.20gb: $mig_gpu_20g
+      # update params
+      update_param "user" "$user"
+      update_param "profile-name" "$profile_name"
+      update_param "cpu" "$cpu"
+      update_param "memory" "$memory"
+      update_param "gpu" "$gpu"
+      update_param "mig-gpu-20g" "$mig_gpu_20g"
+      #update_param "mig-gpu-5g" "$mig_gpu_5g"
+      update_param "storage" "$storage"
+      update_param "kc-pass" "$kc_pass"
 
-      requests.storage: $storage
-EOF
-
-      # Apply the YAML file to the cluster
-      kubectl apply -f profile-instance-$profile_name.yaml
-      # Remove the generated YAML file
-      rm -rf profile-instance-$profile_name.yaml
-      
+      kubectl apply -k common/user-namespace/base
+      sleep 2
+      kubectl apply -k common/user-namespace/base
+        
       profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
       
       # Count the number of profiles
@@ -134,6 +134,17 @@ EOF
   else
     echo "Operation cancelled."
   fi
+
+  # restore params file
+  update_param "user" "admin@gmv.com"
+  update_param "profile-name" "admin"
+  update_param "cpu" "2"
+  update_param "memory" "4Gi"
+  update_param "gpu" "0"
+  update_param "mig-gpu-20g" "0"
+  #update_param "mig-gpu-5g" "0"
+  update_param "storage" "50Gi"
+  update_param "kc-pass" "-"
 
   read -n1 -s -r -p "Press any key to continue"
 }
