@@ -13,7 +13,27 @@ varReference:
 #  kind: Profile
 - path: spec/resourceQuotaSpec/hard/requests.storage
   kind: Profile
+- path: spec/limits/default/cpu
+  kind: LimitRange
+- path: spec/limits/default/memory
+  kind: LimitRange
+- path: spec/limits/defaultRequest/cpu
+  kind: LimitRange
+- path: spec/limits/defaultRequest/memory
+  kind: LimitRange
+- path: spec/limits/max/cpu
+  kind: LimitRange
+- path: spec/limits/max/memory
+  kind: LimitRange
+- path: spec/limits/min/cpu
+  kind: LimitRange
+- path: spec/limits/min/memory
+  kind: LimitRange
+- path: metadata/namespace
+  kind: LimitRange
 - path: metadata/name
   kind: Profile
 - path: metadata/namespace
   kind: PodDefault
+- path: metadata/name
+  kind: Namespace
