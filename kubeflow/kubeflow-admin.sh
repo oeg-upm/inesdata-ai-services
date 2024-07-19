@@ -4,7 +4,7 @@
 create_profile() {
   clear
   env_file="common/user-namespace/base/params.env"
-  POD_NAME=keycloak-76498f4785-2jxg5
+  POD_NAME=keycloak-76498f4785-sk6xn
   
   # get profile name to include in kubernetes
   profile_name=$(grep '^profile-name=' "$env_file" | cut -d'=' -f2 | xargs)
@@ -82,7 +82,7 @@ import_profile_list(){
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/import_users.csv"
   PARAMS_FILE="common/user-namespace/base/params.env"
-  POD_NAME=keycloak-76498f4785-2jxg5
+  POD_NAME=keycloak-76498f4785-sk6xn
   echo
   echo "You need to type the keycloak credentials to import users."
   read -p "Type the keycloack admin user: " kc_adm_user
@@ -153,7 +153,7 @@ import_profile_list(){
 delete_profile() {
   read -p "Enter the profile name to delete: " profile_name
 
-  POD_NAME=keycloak-76498f4785-2jxg5
+  POD_NAME=keycloak-76498f4785-sk6xn
   read -p "Confirm to delete '$profile_name'? [y/N]: " confirm
   if [[ $confirm == [yY] ]]; then
     echo "You need to type the keycloak credentials to make this action."
@@ -209,7 +209,7 @@ delete_user_list(){
 
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/delete_users.csv"
-  POD_NAME=keycloak-76498f4785-2jxg5
+  POD_NAME=keycloak-76498f4785-sk6xn
   echo "You need to type the keycloak credentials to delete users."
   read -p "Type the keycloack admin user: " kc_adm_user
   read -sp "Type the keycloak admin pass: " kc_adm_pass
