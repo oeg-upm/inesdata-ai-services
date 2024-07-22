@@ -20,6 +20,18 @@ spec:
         - ip: 10.96.7.196
           hostnames:
             - keycloak.kubeflow.inesdata.upm
+            - keycloak.ai.inesdata-project.eu
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 10.96.0.10
+        searches:
+          - istio-system.svc.cluster.local
+          - svc.cluster.local
+          - openstacklocal
+        options:
+          - name: ndots
+            value: "5"
       containers:
         - name: authservice
           image: gcr.io/arrikto/kubeflow/oidc-authservice:e236439
@@ -35,6 +47,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/authservice
+            - name: keycloak-ca
+              mountPath: /etc/x509/https
+              readOnly: true
           readinessProbe:
             httpGet:
               path: /
@@ -45,3 +60,9 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: authservice-pvc
+        - name: keycloak-ca
+          secret:
+            secretName: keycloak-cert
+            items:
+              - key: ca.crt
+                path: ca.crt

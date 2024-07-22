@@ -33,6 +33,8 @@ varReference:
   kind: LimitRange
 - path: metadata/name
   kind: Profile
+- path: metadata/name
+  kind: Namespace
 - path: metadata/namespace
   kind: PodDefault
 - path: metadata/name

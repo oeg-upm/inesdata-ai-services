@@ -12,5 +12,5 @@ spec:
       memory: $(memory)
       requests.nvidia.com/gpu: $(gpu)
       requests.nvidia.com/mig-3g.20gb: $(mig-gpu-20g)
-#      requests.nvidia.com/mig-1g.5gb: $(mig-gpu-5g)
+      #      requests.nvidia.com/mig-1g.5gb: $(mig-gpu-5g)
       requests.storage: $(storage)
