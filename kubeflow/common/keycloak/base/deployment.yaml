@@ -15,6 +15,11 @@ spec:
       labels:
         app: keycloak
     spec:
+      hostAliases:
+        - ip: 127.0.0.1
+          hostnames:
+            - keycloak.kubeflow.inesdata.upm
+            - keycloak.ai.inesdata-project.eu
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:24.0.2
@@ -23,13 +28,46 @@ spec:
           envFrom:
             - secretRef:
                 name: keycloak-secret
+            - configMapRef:
+                name: keycloak-config
           ports:
             - name: http
               containerPort: 8080
-#          readinessProbe:
-#            httpGet:
-#              path: /realms/master
-#              port: 8080
-#            initialDelaySeconds: 30
-#            periodSeconds: 10
-#            failureThreshold: 5
+            - name: https
+              containerPort: 8443
+          volumeMounts:
+            - name: keycloak-cert
+              mountPath: /etc/x509/https
+              readOnly: true
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 500m
+            limits:
+              memory: 3Gi
+              cpu: 3
+          livenessProbe:
+            httpGet:
+              path: /auth/health/live
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /auth/health/ready
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 10
+      volumes:
+        - name: keycloak-cert
+          secret:
+            secretName: keycloak-cert
+            items:
+              - key: tls.crt
+                path: tls.crt
+              - key: tls.key
+                path: tls.key
