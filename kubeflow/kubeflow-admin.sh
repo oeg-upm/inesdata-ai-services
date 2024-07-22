@@ -4,7 +4,7 @@
 create_profile() {
   clear
   env_file="common/user-namespace/base/params.env"
-  POD_NAME=keycloak-76498f4785-sk6xn
+  POD_NAME=$(kubectl get pods -n auth | grep keycloak | awk '{print $1}')
   
   # get profile name to include in kubernetes
   profile_name=$(grep '^profile-name=' "$env_file" | cut -d'=' -f2 | xargs)
@@ -39,8 +39,11 @@ create_profile() {
     kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' -t --config /opt/keycloak/bin/kcadm.config'
 
     kubectl apply -k common/user-namespace/base
-    sleep 2
-    kubectl apply -k common/user-namespace/base
+    kubectl wait --timeout=300s -n $profile_name --all --for=condition=Ready pod
+    # applying pod-default
+    kubectl apply -f common/user-namespace/pod-default.yaml
+    # applying limit-range
+    kubectl apply -f common/user-namespace/limit-range.yaml
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
     
@@ -82,7 +85,7 @@ import_profile_list(){
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/import_users.csv"
   PARAMS_FILE="common/user-namespace/base/params.env"
-  POD_NAME=keycloak-76498f4785-sk6xn
+  POD_NAME=$(kubectl get pods -n auth | grep keycloak | awk '{print $1}')
   echo
   echo "You need to type the keycloak credentials to import users."
   read -p "Type the keycloack admin user: " kc_adm_user
@@ -153,7 +156,7 @@ import_profile_list(){
 delete_profile() {
   read -p "Enter the profile name to delete: " profile_name
 
-  POD_NAME=keycloak-76498f4785-sk6xn
+  POD_NAME=$(kubectl get pods -n auth | grep keycloak | awk '{print $1}')
   read -p "Confirm to delete '$profile_name'? [y/N]: " confirm
   if [[ $confirm == [yY] ]]; then
     echo "You need to type the keycloak credentials to make this action."
@@ -209,7 +212,7 @@ delete_user_list(){
 
   # CSV file with users and their resources
   USER_FILE="common/user-namespace/base/delete_users.csv"
-  POD_NAME=keycloak-76498f4785-sk6xn
+  POD_NAME=$(kubectl get pods -n auth | grep keycloak | awk '{print $1}')
   echo "You need to type the keycloak credentials to delete users."
   read -p "Type the keycloack admin user: " kc_adm_user
   read -sp "Type the keycloak admin pass: " kc_adm_pass
