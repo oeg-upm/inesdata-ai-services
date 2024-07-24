@@ -7,6 +7,7 @@ resources:
   - statefulset.yaml
   - envoy-filter.yaml
   - pvc.yaml
+  - istio-system-certificates.yaml
 
 namespace: istio-system
 
