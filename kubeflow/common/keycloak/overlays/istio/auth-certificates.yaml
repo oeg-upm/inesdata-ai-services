@@ -1,0 +1,26 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: keycloak-cluster-issuer
+  namespace: auth
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak-cert
+  namespace: auth
+spec:
+  secretName: keycloak-cert
+  isCA: true
+  usages:
+    - server auth
+  commonName: "keycloak.kubeflow.test.inesdata.upm"
+  dnsNames:
+    - "keycloak.kubeflow.test.inesdata.upm"
+    - "keycloak-admin.kubeflow.test.inesdata.upm"
+    - "keycloak.ai.inesdata-project.eu"
+  issuerRef:
+    name: keycloak-cluster-issuer
+    kind: ClusterIssuer

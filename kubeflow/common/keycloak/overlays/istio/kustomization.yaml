@@ -5,5 +5,6 @@ resources:
   - ../../base
   - virtual-service.yaml
   - authservice.yaml
+  - auth-certificates.yaml
 
 namespace: auth
