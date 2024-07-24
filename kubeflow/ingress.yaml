@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: dashboard.kubeflow.inesdata.upm
+    - host: dashboard.kubeflow.test.inesdata.upm
       http:
         paths:
           - backend:
@@ -44,14 +44,14 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - keycloak.kubeflow.inesdata.upm
-        - keycloak-admin.kubeflow.inesdata.upm
+        - keycloak.kubeflow.test.inesdata.upm
+        - keycloak-admin.kubeflow.test.inesdata.upm
         - keycloak.ai.inesdata-project.eu
       secretName: keycloak-cert
   rules:
     ## Internal access
     # Keycloak
-    - host: keycloak.kubeflow.inesdata.upm
+    - host: keycloak.kubeflow.test.inesdata.upm
       http:
         paths:
           - backend:
@@ -62,7 +62,7 @@ spec:
             path: /auth
             pathType: Prefix
     # Admin panel
-    - host: keycloak-admin.kubeflow.inesdata.upm
+    - host: keycloak-admin.kubeflow.test.inesdata.upm
       http:
         paths:
           - backend:
@@ -95,3 +95,31 @@ spec:
                   number: 8080
             path: /auth
             pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-admin-ingress
+  namespace: auth
+  annotations:
+    cert-manager.io/cluster-issuer: keycloak-cluster-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 512k
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - keycloak.kubeflow.test.inesdata.upm
+      secretName: keycloak-cert
+  rules:
+    # Admin panel
+    - host: keycloak-admin.kubeflow.test.inesdata.upm
+      http:
+        paths:
+        - backend:
+            service:
+              name: keycloak
+              port:
+                number: 443
+          path: /auth
+          pathType: Prefix
