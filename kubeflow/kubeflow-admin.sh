@@ -31,12 +31,12 @@ create_profile() {
   if [[ $confirm == [yY] ]]; then
     echo "*** CREATING USER ***"
 
-    #echo "You need to type the keycloak credentials to make this action."
-    #read -p "Type the keycloack admin user: " kc_adm_user
-    #read -sp "Type the keycloak admin pass: " kc_adm_pass
-    ## login
-    #kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
-    #kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' -t --config /opt/keycloak/bin/kcadm.config'
+    echo "You need to type the keycloak credentials to make this action."
+    read -p "Type the keycloack admin user: " kc_adm_user
+    read -sp "Type the keycloak admin pass: " kc_adm_pass
+    # login
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user '$kc_adm_user' --password '$kc_adm_pass' --config /opt/keycloak/bin/kcadm.config'
+    kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' -t --config /opt/keycloak/bin/kcadm.config'
 
     kubectl apply -k common/user-namespace/base
     sleep 2
