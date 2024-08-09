@@ -1,0 +1,60 @@
+site_name: "INESDATA IA SERVICES"
+site_url: http://localhost
+site_description: Data Generation
+site_author: GMV
+
+repo_url: https://github.com/oeg-upm/Inesdata-AI-Services
+
+theme:
+  name: material
+  locale: es
+  highlightjs: true
+  hljs_languages:
+    - python
+    - bash
+  features:
+    - tabs
+    - navigation.instant
+    - navigation.tabs
+    - content.code.copy
+  icon:
+    annotation: material/plus-circle-outline
+
+  
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - markdown_include.include
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+    - search
+    - markdownextradata: {}
+    - same-dir
+    - mkdocs-jupyter
+
+nav:
+  - 🏠 Home: index.md
+  - 🛠️ Instalación y administración:
+    - Guía de instalación: guias/instalacion/index.md
+    - Guia de administración: guias/administracion/index.md
+  - 📚 Guía de usuario: 
+    - Introducción: guias/usuario/index.md
+    - Ejemplos: 
+      - Mi primer volumen: guias/usuario/examples/volumen.md
+      - Mi primer notebook: guias/usuario/examples/notebooks.md
+      - Mi primer pipeline: guias/usuario/examples/pipeline.ipynb
+
+extra:
+  notebook: "`Notebook`"
+  pipeline: "`Pipeline`"
+  volume: "`Volume`"
