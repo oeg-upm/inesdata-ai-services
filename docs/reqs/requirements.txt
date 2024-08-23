@@ -4,9 +4,6 @@
 #
 #    pip-compile docs/requirements.in
 #
---index-url https://shared:g4LL1f4nt3*@dev-tools.labs.gmv.com/nexus/repository/public_pypi/simple
---find-links https://shared:g4LL1f4nt3*@dev-tools.labs.gmv.com/nexus/repository/public_pypi/simple
---trusted-host dev-tools.labs.gmv.com
 
 asttokens==2.4.1
     # via stack-data
