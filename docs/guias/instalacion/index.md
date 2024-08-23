@@ -2,14 +2,6 @@
 
 ---
 
-## Tabla de contenidos
-
-- [Descripción general](#descripcion-general)
-- [Versiones de componentes de Kubeflow](#versiones-de-componentes-de-kubeflow)
-- [Instalación](#instalacion)
-    * [Prerrequisitos](#prerrequisitos)
-    * [Instalar componentes](#instalar-componentes)
-
 ## Descripción general
 
 Esta guía describe el proceso de instalación de los Manifiestos de Kubeflow sobre los que se basa la plataforma `Inesdata-AI-Services`. Está basada en el repositorio de [Manifiestos de Kubeflow](https://github.com/kubeflow/manifests/tree/v1.8.0). Dicho repositorio es propiedad del [Grupo de Trabajo de Manifiestos](https://github.com/kubeflow/community/blob/master/wg-manifests/charter.md).

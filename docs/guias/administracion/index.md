@@ -1,6 +1,12 @@
-# **Uso del script de administración**
+# **Uso del script de administración de usuarios**
 
 ---
+
+## Descripción general
+
+Con el objetivo de simplificar el proceso de administrar usuarios (dar de alta, asignar recursos de computo, etc.), se ha desarrollado un script en `bash` que permite 
+
+## Uso
 
 Desde la carpeta ``kubeflow``, lanzar el siguiente comando:
 ```
@@ -20,7 +26,7 @@ KUBEFLOW ADMIN:
 Type an option: 
 ```
 
-## Crear usuario
+### Crear usuario
 
 Previamente debe existir el fichero ``kubeflow/common/user-namespace/base/params.env`` con la información correspondiente al perfil que se quiere crear.
 
@@ -28,7 +34,7 @@ Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``1``.
 
 Seguidamente, aparecerá una pantalla de confirmación con los datos del perfil y solicitará confirmación para proceder a crear el usuario en `Kubeflow` y `Keycloak`.
 
-## Importar usuarios desde CSV
+### Importar usuarios desde CSV
 
 Es necesario crear ``common/user-namespace/base/import_users.csv`` con el siguiente formato antes de continuar con el proceso:
 ```
@@ -49,7 +55,13 @@ Seguidamente ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``2``.
 
 Aparecerá una pantalla de confirmación antes de comenzar la importación.
 
-## Eliminar usuario
+### Listar usuarios
+
+Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``5``.
+
+El script mostrará una lista con los usuarios dados de alta en `Kubeflow`.
+
+### Eliminar usuario
 
 Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``3``.
 
@@ -57,7 +69,7 @@ Escribir por teclado el nombre del perfil que se desea elinminar.
 
 Aparecerá una pantalla de confirmación. Tras verificar la acción se procedera a eliminar el usuario de `Kubeflow` y `Keycloak`.
 
-## Eliminar una lista de usuarios
+### Eliminar una lista de usuarios
 
 Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``4``.
 
@@ -74,20 +86,16 @@ user1
 
 Aparecerá una pantalla de confirmación. Tras verificar la acción se procederá a eliminar los usuarios de `Kubeflow` y `Keycloak`.
 
-## Listar usuarios
 
-Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``5``.
 
-El script mostrará una lista con los usuarios dados de alta en `Kubeflow`.
-
-## Ver recursos de usuario
+### Ver recursos de usuario
 Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``6``.
 
 Escribir por teclado el nombre del perfil que se desea consultar.
 
 El script mostrará una lista con los recursos disponibles para el usuario solicitado en `Kubeflow`.
 
-## Modicar recursos de usuario
+### Modicar recursos de usuario
 Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``7``.
 
 Escribir por teclado el nombre del perfil que se desea modificar.
@@ -105,5 +113,5 @@ Type the resource to modify on admin profile:
 ```
 Seguidamente seleccionar la opción del recurso a modificar y seleccionar el valor deseado para ser aplicado.
 
-## Salir del administrador de Kubeflow
+### Salir del administrador de Kubeflow
 Ejecutar ``kubeflow-admin.sh`` y seleccionar la opción ``8``.
