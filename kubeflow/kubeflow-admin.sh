@@ -39,8 +39,17 @@ create_profile() {
     kubectl exec -n auth $POD_NAME -- bash -c '/opt/keycloak/bin/kcadm.sh create users -r kubeflow -s username='$profile_name' -s enabled=true --config /opt/keycloak/bin/kcadm.config ; /opt/keycloak/bin/kcadm.sh set-password -r kubeflow --username '$profile_name' --new-password '$kc_pass' -t --config /opt/keycloak/bin/kcadm.config'
 
     kubectl apply -k common/user-namespace/base
-    sleep 2
-    kubectl apply -k common/user-namespace/base
+    kubectl wait --timeout=300s -n $profile_name --all --for=condition=Ready pod
+
+    # Set the environment variables
+    export PROFILE_NAME=$profile_name
+    export CPU=$cpu
+    export MEMORY=$memory
+
+    # applying pod-default
+    envsubst < ./common/user-namespace/base/pod-default.yaml | kubectl apply -f -
+    # applying limit-range
+    envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
     
@@ -111,8 +120,17 @@ import_profile_list(){
       update_param "kc-pass" "$kc_pass"
 
       kubectl apply -k common/user-namespace/base
-      sleep 2
-      kubectl apply -k common/user-namespace/base
+      kubectl wait --timeout=300s -n $profile_name --all --for=condition=Ready pod
+
+      # Set the environment variables
+      export PROFILE_NAME=$profile_name
+      export CPU=$cpu
+      export MEMORY=$memory
+
+      # applying pod-default
+      envsubst < ./common/user-namespace/base/pod-default.yaml | kubectl apply -f -
+      # applying limit-range
+      envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
         
       profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
       
