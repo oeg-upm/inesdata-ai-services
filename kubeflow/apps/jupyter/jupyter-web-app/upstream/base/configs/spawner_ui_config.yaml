@@ -238,18 +238,18 @@ spawnerFormDefaults:
     # the `groupKey` of the default toleration group
     # (to have no default, set as "")
     # (if `readOnly`, the default `value` will be the only accessible option)
-    value: "group_1"
+    value: ""
 
     # the list of available toleration groups in the dropdown
-    # options: []
-    options:
-      - groupKey: "group_1"
-        displayName: "GPU"
-        tolerations:
-          - key: "gpu"
-            operator: "Equal"
-            value: "yes"
-            effect: "NoSchedule"
+    options: []
+    # options:
+    #   - groupKey: "group_1"
+    #     displayName: "GPU"
+    #     tolerations:
+    #       - key: "gpu"
+    #         operator: "Equal"
+    #         value: "yes"
+    #         effect: "NoSchedule"
 
     # - groupKey: "group_2"
     #   displayName: "8 CPU 16Gb Mem"

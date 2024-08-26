@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: dashboard.kubeflow.test.inesdata.upm
+    - host: dashboard.test.inesdata.upm
       http:
         paths:
           - backend:
@@ -44,14 +44,14 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - keycloak.kubeflow.test.inesdata.upm
-        - keycloak-admin.kubeflow.test.inesdata.upm
+        - keycloak.test.inesdata.upm
+        - keycloak-admin.test.inesdata.upm
         - keycloak.ai.inesdata-project.eu
       secretName: keycloak-cert
   rules:
     ## Internal access
     # Keycloak
-    - host: keycloak.kubeflow.test.inesdata.upm
+    - host: keycloak.test.inesdata.upm
       http:
         paths:
           - backend:
@@ -62,7 +62,7 @@ spec:
             path: /auth
             pathType: Prefix
     # Admin panel
-    - host: keycloak-admin.kubeflow.test.inesdata.upm
+    - host: keycloak-admin.test.inesdata.upm
       http:
         paths:
           - backend:

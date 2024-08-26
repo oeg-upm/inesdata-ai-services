@@ -17,9 +17,9 @@ spec:
     spec:
       serviceAccountName: authservice
       hostAliases:
-        - ip: 10.96.7.196
+        - ip: 10.98.233.244
           hostnames:
-            - keycloak.kubeflow.test.inesdata.upm
+            - keycloak.test.inesdata.upm
             - keycloak.ai.inesdata-project.eu
       containers:
         - name: authservice

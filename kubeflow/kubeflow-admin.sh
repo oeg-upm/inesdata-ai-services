@@ -40,10 +40,16 @@ create_profile() {
 
     kubectl apply -k common/user-namespace/base
     kubectl wait --timeout=300s -n $profile_name --all --for=condition=Ready pod
+
+    # Set the environment variables
+    export PROFILE_NAME=$profile_name
+    export CPU=$cpu
+    export MEMORY=$memory
+
     # applying pod-default
-    kubectl apply -f common/user-namespace/pod-default.yaml
+    envsubst < ./common/user-namespace/base/pod-default.yaml | kubectl apply -f -
     # applying limit-range
-    kubectl apply -f common/user-namespace/limit-range.yaml
+    envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
     
@@ -114,8 +120,17 @@ import_profile_list(){
       update_param "kc-pass" "$kc_pass"
 
       kubectl apply -k common/user-namespace/base
-      sleep 2
-      kubectl apply -k common/user-namespace/base
+      kubectl wait --timeout=300s -n $profile_name --all --for=condition=Ready pod
+
+      # Set the environment variables
+      export PROFILE_NAME=$profile_name
+      export CPU=$cpu
+      export MEMORY=$memory
+
+      # applying pod-default
+      envsubst < ./common/user-namespace/base/pod-default.yaml | kubectl apply -f -
+      # applying limit-range
+      envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
         
       profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
       

@@ -18,7 +18,7 @@ spec:
       hostAliases:
         - ip: 127.0.0.1
           hostnames:
-            - keycloak.kubeflow.test.inesdata.upm
+            - keycloak.test.inesdata.upm
             - keycloak.ai.inesdata-project.eu
       containers:
         - name: keycloak
