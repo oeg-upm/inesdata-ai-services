@@ -12,8 +12,8 @@ spec:
         cpu: "10m"
         memory: "10Mi"
       max:
-        cpu: $(cpu)
-        memory: $(memory)
+        cpu: ${CPU}
+        memory: ${MEMORY}
       min:
         cpu: "10m"
         memory: "10Mi"
