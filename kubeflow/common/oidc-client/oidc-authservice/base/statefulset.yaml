@@ -21,17 +21,6 @@ spec:
           hostnames:
             - keycloak.kubeflow.inesdata.upm
             - keycloak.ai.inesdata-project.eu
-      dnsPolicy: None
-      dnsConfig:
-        nameservers:
-          - 10.96.0.10
-        searches:
-          - istio-system.svc.cluster.local
-          - svc.cluster.local
-          - openstacklocal
-        options:
-          - name: ndots
-            value: "5"
       containers:
         - name: authservice
           image: gcr.io/arrikto/kubeflow/oidc-authservice:e236439
