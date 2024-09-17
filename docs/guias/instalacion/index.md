@@ -29,8 +29,8 @@ La siguiente matriz muestra la versión de git que se incluye para cada componen
 | PodDefaults Webhook | apps/admission-webhook/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/admission-webhook/manifests) |
 | Jupyter Web App | apps/jupyter/jupyter-web-app/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/jupyter/manifests) |
 | Volumes Web App | apps/volumes-web-app/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/volumes/manifests) |
-| KServe | contrib/kserve/kserve | [v0.11.1](https://github.com/kserve/kserve/tree/v0.11.1/install/v0.11.1) |
-| KServe Models Web App | contrib/kserve/models-web-app | [v0.10.0](https://github.com/kserve/models-web-app/tree/v0.10.0/config) |
+| KServe | contrib/kserve/kserve | [v0.13.0](https://github.com/kserve/kserve/releases/tag/v0.13.0) |
+| KServe Models Web App | contrib/kserve/models-web-app | [v0.13.0-rc0](https://github.com/kserve/models-web-app/tree/v0.13.0-rc.0/config) |
 | Kubeflow Pipelines | apps/pipeline/upstream | [2.0.3](https://github.com/kubeflow/pipelines/tree/2.0.3/manifests/kustomize) |
 
 La siguiente es también una matriz con versiones de componentes comunes que son
