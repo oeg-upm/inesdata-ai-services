@@ -19,7 +19,7 @@ spec:
         - ip: 127.0.0.1
           hostnames:
             - keycloak.test.inesdata.upm
-            - keycloak.ai.inesdata-project.eu
+            #- keycloak.ai.inesdata-project.eu
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:24.0.2

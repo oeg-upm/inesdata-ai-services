@@ -20,16 +20,16 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-    - host: kubeflow.ai.inesdata-project.eu
-      http:
-        paths:
-          - backend:
-              service:
-                name: istio-ingressgateway
-                port:
-                  number: 80
-            path: /
-            pathType: Prefix
+    #- host: kubeflow.ai.inesdata-project.eu
+    #  http:
+    #    paths:
+    #      - backend:
+    #          service:
+    #            name: istio-ingressgateway
+    #            port:
+    #              number: 80
+    #        path: /
+    #        pathType: Prefix
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -44,9 +44,9 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - keycloak.test.inesdata.upm
         - keycloak-admin.test.inesdata.upm
-        - keycloak.ai.inesdata-project.eu
+        - keycloak.test.inesdata.upm
+        #- keycloak.ai.inesdata-project.eu
       secretName: keycloak-cert
   rules:
     ## Internal access
@@ -74,24 +74,13 @@ spec:
             pathType: Prefix
     ## External access
     # Keycloak
-    - host: keycloak.ai.inesdata-project.eu
-      http:
-        paths:
-          - backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080
-            path: /auth
-            pathType: Prefix
-    # Keycloak
-    - host: keycloak-admin.ai.inesdata-project.eu
-      http:
-        paths:
-          - backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080
-            path: /auth
-            pathType: Prefix
+    #- host: keycloak.ai.inesdata-project.eu
+    #  http:
+    #    paths:
+    #      - backend:
+    #          service:
+    #            name: keycloak
+    #            port:
+    #              number: 8080
+    #        path: /auth
+    #        pathType: Prefix

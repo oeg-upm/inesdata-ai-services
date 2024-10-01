@@ -16,7 +16,7 @@ data:
   # KC_HOSTNAME_ADMIN_URL: "https://keycloak-admin.kubeflow.test.inesdata.upm/auth"
   # Test
   KC_HOSTNAME_URL: "https://keycloak.test.inesdata.upm/auth"
-  KC_HOSTNAME_ADMIN_URL: "https://keycloak.test.inesdata.upm/auth"
+  KC_HOSTNAME_ADMIN_URL: "https://keycloak-admin.test.inesdata.upm/auth"
   KC_HTTPS_CERTIFICATE_FILE: "/etc/x509/https/tls.crt"
   KC_HTTPS_CERTIFICATE_KEY_FILE: "/etc/x509/https/tls.key"
   KC_PROXY_HEADERS: "forwarded"

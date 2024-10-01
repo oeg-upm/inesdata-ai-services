@@ -18,9 +18,9 @@ spec:
     - server auth
   commonName: "keycloak.test.inesdata.upm"
   dnsNames:
-    - "keycloak.test.inesdata.upm"
     - "keycloak-admin.test.inesdata.upm"
-    - "keycloak.ai.inesdata-project.eu"
+    - "keycloak.test.inesdata.upm"
+    #- "keycloak.ai.inesdata-project.eu"
   issuerRef:
     name: keycloak-cluster-issuer
     kind: ClusterIssuer
