@@ -10,16 +10,18 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: dashboard.kubeflow.inesdata.upm
-      http:
-        paths:
-          - backend:
-              service:
-                name: istio-ingressgateway
-                port:
-                  number: 80
-            path: /
-            pathType: Prefix
+    ## Internal
+    #- host: dasboard.ai.inesdata.upm
+    #  http:
+    #    paths:
+    #      - backend:
+    #          service:
+    #            name: istio-ingressgateway
+    #            port:
+    #              number: 80
+    #        path: /
+    #        pathType: Prefix
+    ## External
     - host: kubeflow.ai.inesdata-project.eu
       http:
         paths:
@@ -44,48 +46,39 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - keycloak.kubeflow.inesdata.upm
-        - keycloak-admin.kubeflow.inesdata.upm
+        - keycloak-admin.ai.inesdata.upm
+        ## Internal
+        #- keycloak.ai.inesdata.upm
+        ## External
         - keycloak.ai.inesdata-project.eu
       secretName: keycloak-cert
   rules:
+    ## Admin panel
+    - host: keycloak-admin.ai.inesdata.upm
+      http:
+        paths:
+          - backend:
+              service:
+                name: keycloak
+                port:
+                  number: 8080
+            path: /auth
+            pathType: Prefix
     ## Internal access
     # Keycloak
-    - host: keycloak.kubeflow.inesdata.upm
-      http:
-        paths:
-          - backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080
-            path: /auth
-            pathType: Prefix
-    # Admin panel
-    - host: keycloak-admin.kubeflow.inesdata.upm
-      http:
-        paths:
-          - backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080
-            path: /auth
-            pathType: Prefix
+    #- host: keycloak.ai.inesdata.upm
+    #  http:
+    #    paths:
+    #      - backend:
+    #          service:
+    #            name: keycloak
+    #            port:
+    #              number: 8080
+    #        path: /auth
+    #        pathType: Prefix
     ## External access
     # Keycloak
     - host: keycloak.ai.inesdata-project.eu
-      http:
-        paths:
-          - backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080
-            path: /auth
-            pathType: Prefix
-    # Keycloak
-    - host: keycloak-admin.ai.inesdata-project.eu
       http:
         paths:
           - backend:

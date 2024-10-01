@@ -29,8 +29,8 @@ La siguiente matriz muestra la versión de git que se incluye para cada componen
 | PodDefaults Webhook | apps/admission-webhook/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/admission-webhook/manifests) |
 | Jupyter Web App | apps/jupyter/jupyter-web-app/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/jupyter/manifests) |
 | Volumes Web App | apps/volumes-web-app/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/volumes/manifests) |
-| KServe | contrib/kserve/kserve | [v0.11.1](https://github.com/kserve/kserve/tree/v0.11.1/install/v0.11.1) |
-| KServe Models Web App | contrib/kserve/models-web-app | [v0.10.0](https://github.com/kserve/models-web-app/tree/v0.10.0/config) |
+| KServe | contrib/kserve/kserve | [v0.13.0](https://github.com/kserve/kserve/releases/tag/v0.13.0) |
+| KServe Models Web App | contrib/kserve/models-web-app | [v0.13.0-rc.0](https://github.com/kserve/models-web-app/tree/v0.13.0-rc.0/config) |
 | Kubeflow Pipelines | apps/pipeline/upstream | [2.0.3](https://github.com/kubeflow/pipelines/tree/2.0.3/manifests/kustomize) |
 
 La siguiente es también una matriz con versiones de componentes comunes que son
@@ -137,75 +137,6 @@ Verificación de instalación correcta:
 
 ```sh
 kubectl get pods -n istio-system
-```
-
-#### AuthService
-
-El AuthService OIDC extiende las capacidades de tu Ingress-Gateway de Istio, para que pueda funcionar como un cliente OIDC:
-
-```sh
-kubectl apply -k common/oidc-client/oidc-authservice/base
-```
-
-Verificación de instalación correcta:
-
-```sh
-kubectl get pods -n istio-system
-```
-
-#### Keycloak
-
-Keycloak es un proveedor de identidad y acceso con soporte para OpenID Connect (OIDC) y SAML 2.0. En esta instalación, Keycloak se configurará para gestionar la autenticación y la autorización de los usuarios. Incluye múltiples opciones de backend de autenticación y permite la configuración de usuarios y roles según las necesidades específicas del entorno. Para cualquier despliegue de Kubeflow en producción, es esencial configurar correctamente los usuarios y las políticas de seguridad en Keycloak.
-
-Instalar Keycloak:
-
-!!! warning
-
-    Para su correcta instalacíon es necesario el uso de la herramienta `jq`. En caso de no tenerla instalada, ejecutar el siguiente comando:
-
-```sh
-sudo apt install jq
-```
-
-Una vez verificado que se tiene instalada dicha herramienta, se puede proceder con la instalación:
-
-```sh
-kubectl apply -k common/keycloak/overlays/istio
-kubectl get secrets keycloak-cert -n auth -o json | jq 'del(.metadata["namespace","creationTimestamp","resourceVersion","selfLink","uid","annotations"])' | kubectl apply -n istio-system -f -
-```
-
-Una vez instalado correctamente `Keycloak` se deberan realizar una serie de ajuestes en la configuracion de la herramienta.
-
-!!! info
-
-    Para acceder a la interfaz de `Keycloak` se utilizará la URL
-    
-    ```
-    https://keycloak-admin.kubeflow.inesdata.upm/auth
-    ```
-    
-    para la cual será necesario haber establecido un tunel SSH previamente.
-
-!!! warning
-
-    Se deberá crear el `Realm` que contiene la configuracíon necesaria para que la plataforme se integre correctamente con `Keycloak`. Para ello se puede descargar desde <a href="../../assets/realm-kubeflow.json" download>:material-cursor-default-click: aquí</a> .
-
-    Para crearlo pulsar en el desplegable de la esquina superior izquierda y hacer :material-cursor-default-click: click sobre `Create realm`.
-
-    ![create_realm](../../assets/create_realm1.png)
-
-    En la pantalla que aparece, clickar sobre `Browse`, seleccionar el `Realm` descargado, ponerle un nombre, y hacer :material-cursor-default-click: click en `Create`.
-
-    ![create_realm](../../assets/create_realm2.png)
-
-Con el `Realm` en funcionamiento se deberá añadir la URL contenida en la variable `REDIRECT_URL` del fichero `common/oidc-client/oidc-authservice/base/params.env` en la sección `Valid redirect URIs` de la configuración del cliente `kubeflow-oidc-authservice` tal y como se muestra en la siguiente imagen:
-
-![REDIRECT_URL](../../assets/redirect_url.png)
-
-Verificación de instalación correcta:
-
-```sh
-kubectl get pods -n auth
 ```
 
 #### Knative
@@ -382,12 +313,105 @@ Verificación de instalación correcta:
 kubectl get pods -n kubeflow
 ```
 
+---
+
+!!! danger "IMPORTANTE"
+
+    Se deben revisar los siguientes ficheros para asegurarse de que las URLs están correctamente configuradas antes de continuar con la instalación:
+    
+    - common/keycloak/base/config-map.yaml
+    - common/keycloak/base/deployment.yaml
+    - common/keycloak/overlays/istio/auth-certificates.yaml
+    - common/oidc-client/oidc-authservice/base/params.env
+    - common/oidc-client/oidc-authservice/base/statefulset.yaml
+    - ingress.yaml
+
+---
+
 #### Ingress
 
 Aplicar la configuración de Ingress para el clúster de Kubeflow:
 
 ```sh
 kubectl apply -f ingress.yaml
+```
+
+#### Keycloak
+
+Keycloak es un proveedor de identidad y acceso con soporte para OpenID Connect (OIDC) y SAML 2.0. En esta instalación, Keycloak se configurará para gestionar la autenticación y la autorización de los usuarios. Incluye múltiples opciones de backend de autenticación y permite la configuración de usuarios y roles según las necesidades específicas del entorno. Para cualquier despliegue de Kubeflow en producción, es esencial configurar correctamente los usuarios y las políticas de seguridad en Keycloak.
+
+Instalar Keycloak:
+
+!!! warning
+
+    Para su correcta instalacíon es necesario el uso de la herramienta `jq`. En caso de no tenerla instalada, ejecutar el siguiente comando:
+
+```sh
+sudo apt install jq
+```
+
+Una vez verificado que se tiene instalada dicha herramienta, se puede proceder con la instalación:
+
+```sh
+kubectl apply -k common/keycloak/overlays/istio
+kubectl get secrets keycloak-cert -n auth -o json | jq 'del(.metadata["namespace","creationTimestamp","resourceVersion","selfLink","uid","annotations"])' | kubectl apply -n istio-system -f -
+```
+
+Una vez instalado correctamente `Keycloak` se deberan realizar una serie de ajuestes en la configuracion de la herramienta.
+
+!!! info
+
+    Para acceder a la interfaz de `Keycloak` se utilizará la URL
+    
+    ```
+    https://keycloak-admin.ai.inesdata.upm/auth
+    ```
+    
+    para la cual será necesario haber establecido un tunel SSH previamente.
+
+!!! warning
+
+    Se deberá crear el `Realm` que contiene la configuracíon necesaria para que la plataforme se integre correctamente con `Keycloak`. Para ello se puede descargar desde <a href="../../assets/realm-kubeflow.json" download>:material-cursor-default-click: aquí</a> .
+
+    Para crearlo pulsar en el desplegable de la esquina superior izquierda y hacer :material-cursor-default-click: click sobre `Create realm`.
+
+    ![create_realm](../../assets/create_realm1.png)
+
+    En la pantalla que aparece, clickar sobre `Browse`, seleccionar el `Realm` descargado, ponerle un nombre, y hacer :material-cursor-default-click: click en `Create`.
+
+    ![create_realm](../../assets/create_realm2.png)
+
+Con el `Realm` en funcionamiento se deberá añadir la URL contenida en la variable `REDIRECT_URL` del fichero `common/oidc-client/oidc-authservice/base/params.env` en la sección `Valid redirect URIs` de la configuración del cliente `kubeflow-oidc-authservice` tal y como se muestra en la siguiente imagen:
+
+![REDIRECT_URL](../../assets/redirect_url.png)
+
+En esa misma ventana verificar también el parámetro `Front-channel logout URL` y asegurarse de que contiene la URL de acceso a la plataforma.
+
+Verificación de instalación correcta:
+
+```sh
+kubectl get pods -n auth
+```
+
+#### AuthService
+
+El AuthService OIDC extiende las capacidades de tu Ingress-Gateway de Istio, para que pueda funcionar como un cliente OIDC:
+
+
+!!! warning
+
+    Antes de proceder con la instalación del AuthService, completar el parametro `CLIENT_SECRET` ubicado en `common/oidc-client/oidc-authservice/base/secret_params.env` con el valor que se encuentra en la UI de Keycloak en la sección **Clients -> kubeflow-oidc-authservice -> Credentials -> Client Secret**.
+    
+    Una vez guardados los cambios se puede proseguir con la instalación del OIDC AuthService.
+
+```sh
+kubectl apply -k common/oidc-client/oidc-authservice/base
+```
+
+Verificación de instalación correcta:
+
+```sh
+kubectl get pods -n istio-system
 ```
 
 #### Namespace del Usuario

@@ -16,10 +16,15 @@ spec:
   isCA: true
   usages:
     - server auth
-  commonName: "keycloak.kubeflow.inesdata.upm"
+  ## Internal
+  #commonName: "keycloak.ai.inesdata.upm"
+  ## External
+  commonName: "keycloak.ai.inesdata-project.eu"
   dnsNames:
-    - "keycloak.kubeflow.inesdata.upm"
-    - "keycloak-admin.kubeflow.inesdata.upm"
+    - "keycloak-admin.ai.inesdata.upm"
+    ## Internal
+    #- "keycloak.ai.inesdata.upm"
+    ## External
     - "keycloak.ai.inesdata-project.eu"
   issuerRef:
     name: keycloak-cluster-issuer

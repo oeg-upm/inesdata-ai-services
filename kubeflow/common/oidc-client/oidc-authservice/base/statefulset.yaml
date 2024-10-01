@@ -19,7 +19,9 @@ spec:
       hostAliases:
         - ip: 10.96.7.196
           hostnames:
-            - keycloak.kubeflow.inesdata.upm
+            ## Internal
+            #- keycloak.ai.inesdata.upm
+            ## External
             - keycloak.ai.inesdata-project.eu
       containers:
         - name: authservice

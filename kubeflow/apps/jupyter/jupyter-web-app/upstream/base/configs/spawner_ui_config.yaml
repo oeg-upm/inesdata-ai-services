@@ -233,12 +233,12 @@ spawnerFormDefaults:
   # Tolerations
   ################################################################
   tolerationGroup:
-    readOnly: true
+    readOnly: false
 
     # the `groupKey` of the default toleration group
     # (to have no default, set as "")
     # (if `readOnly`, the default `value` will be the only accessible option)
-    value: "group_1"
+    value: ""
 
     # the list of available toleration groups in the dropdown
     # options: []

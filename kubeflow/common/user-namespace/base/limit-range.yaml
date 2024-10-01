@@ -6,11 +6,11 @@ metadata:
 spec:
   limits:
     - default:
-        cpu: "10m"
-        memory: "10Mi"
+        cpu: "50m"
+        memory: "100Mi"
       defaultRequest:
-        cpu: "10m"
-        memory: "10Mi"
+        cpu: "50m"
+        memory: "100Mi"
       max:
         cpu: ${CPU}
         memory: ${MEMORY}
