@@ -1,0 +1,1615 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Generation">
+      
+      
+        <meta name="author" content="GMV">
+      
+      
+        <link rel="canonical" href="http://localhost/guias/instalacion/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../administracion/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>Guía de instalación - INESDATA AI SERVICES - 1.1.0</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m1 5h-2v4H7v2h4v4h2v-4h4v-2h-4V7Z"/></svg>');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-de-instalacion" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="INESDATA AI SERVICES - 1.1.0" class="md-header__button md-logo" aria-label="INESDATA AI SERVICES - 1.1.0" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            INESDATA AI SERVICES - 1.1.0
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guía de instalación
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/oeg-upm/Inesdata-AI-Services" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  🛠️ Instalación y administración
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../usuario/" class="md-tabs__link">
+          
+  
+  📚 Guía de usuario
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+    
+  
+  📜 Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="INESDATA AI SERVICES - 1.1.0" class="md-nav__button md-logo" aria-label="INESDATA AI SERVICES - 1.1.0" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    INESDATA AI SERVICES - 1.1.0
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/oeg-upm/Inesdata-AI-Services" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    🛠️ Instalación y administración
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🛠️ Instalación y administración
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Guía de instalación
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Guía de instalación
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descripcion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descripción general
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versiones-de-componentes-de-kubeflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versiones de componentes de Kubeflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Versiones de componentes de Kubeflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-de-kubeflow-180" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versión de Kubeflow: 1.8.0
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerrequisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerrequisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalar-componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar componentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antes-de-comenzar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Antes de comenzar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Antes de comenzar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cert-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cert-Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#istio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Istio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knative
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace-de-kubeflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace de Kubeflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeflow-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubeflow Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursos-de-istio-para-kubeflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos de Istio para Kubeflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeflow-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubeflow Pipelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubeflow Pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-del-multi-user-kubeflow-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencias del Multi-User Kubeflow Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kserve" class="md-nav__link">
+    <span class="md-ellipsis">
+      KServe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#central-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Central Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admission-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admission Webhook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvc-viewer-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      PVC Viewer Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfiles-kfam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfiles + KFAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-web-de-volumenes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicación Web de Volúmenes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloak
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuthService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace-del-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace del Usuario
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administracion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guia de administración
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    📚 Guía de usuario
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            📚 Guía de usuario
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usuario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducción
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ejemplos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejemplos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usuario/examples/volumen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mi primer volumen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usuario/examples/notebooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mi primer notebook
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usuario/examples/pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mi primer pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📜 Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descripcion-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descripción general
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versiones-de-componentes-de-kubeflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versiones de componentes de Kubeflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Versiones de componentes de Kubeflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-de-kubeflow-180" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versión de Kubeflow: 1.8.0
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerrequisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerrequisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalar-componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar componentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antes-de-comenzar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Antes de comenzar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Antes de comenzar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cert-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cert-Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#istio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Istio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knative
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace-de-kubeflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace de Kubeflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeflow-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubeflow Roles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursos-de-istio-para-kubeflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos de Istio para Kubeflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeflow-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubeflow Pipelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubeflow Pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-del-multi-user-kubeflow-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencias del Multi-User Kubeflow Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kserve" class="md-nav__link">
+    <span class="md-ellipsis">
+      KServe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#central-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Central Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admission-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admission Webhook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvc-viewer-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      PVC Viewer Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfiles-kfam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfiles + KFAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-web-de-volumenes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicación Web de Volúmenes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycloak" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keycloak
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuthService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace-del-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace del Usuario
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="guia-de-instalacion"><strong>Guía de instalación</strong></h1>
+<hr />
+<h2 id="descripcion-general">Descripción general</h2>
+<p>Esta guía describe el proceso de instalación de los Manifiestos de Kubeflow sobre los que se basa la plataforma <code>Inesdata-AI-Services</code>. Está basada en el repositorio de <a href="https://github.com/kubeflow/manifests/tree/v1.8.0">Manifiestos de Kubeflow</a>. Dicho repositorio es propiedad del <a href="https://github.com/kubeflow/community/blob/master/wg-manifests/charter.md">Grupo de Trabajo de Manifiestos</a>.</p>
+<p>El repositorio está organizado en tres (3) directorios principales, que incluyen manifiestos para instalar:</p>
+<table>
+<thead>
+<tr>
+<th>Directorio</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apps</code></td>
+<td>Componentes oficiales de Kubeflow, mantenidos por los respectivos Grupos de Trabajo de Kubeflow</td>
+</tr>
+<tr>
+<td><code>common</code></td>
+<td>Servicios comunes, mantenidos por el Grupo de Trabajo de Manifiestos</td>
+</tr>
+<tr>
+<td><code>contrib</code></td>
+<td>Aplicaciones contribuidas por terceros, que se mantienen externamente y no forman parte de un Grupo de Trabajo de Kubeflow</td>
+</tr>
+</tbody>
+</table>
+<h2 id="versiones-de-componentes-de-kubeflow">Versiones de componentes de Kubeflow</h2>
+<h3 id="version-de-kubeflow-180">Versión de Kubeflow: 1.8.0</h3>
+<p>La siguiente matriz muestra la versión de git que se incluye para cada componente:</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Ruta de Manifiestos Locales</th>
+<th>Revisión Upstream</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Notebook Controller</td>
+<td>apps/jupyter/notebook-controller/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/notebook-controller/config">v1.8.0</a></td>
+</tr>
+<tr>
+<td>PVC Viewer Controller</td>
+<td>apps/pvcviewer-roller/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/pvcviewer-controller/config">v1.8.0</a></td>
+</tr>
+<tr>
+<td>Central Dashboard</td>
+<td>apps/centraldashboard/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/centraldashboard/manifests">v1.8.0</a></td>
+</tr>
+<tr>
+<td>Profiles + KFAM</td>
+<td>apps/profiles/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/profile-controller/config">v1.8.0</a></td>
+</tr>
+<tr>
+<td>PodDefaults Webhook</td>
+<td>apps/admission-webhook/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/admission-webhook/manifests">v1.8.0</a></td>
+</tr>
+<tr>
+<td>Jupyter Web App</td>
+<td>apps/jupyter/jupyter-web-app/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/jupyter/manifests">v1.8.0</a></td>
+</tr>
+<tr>
+<td>Volumes Web App</td>
+<td>apps/volumes-web-app/upstream</td>
+<td><a href="https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/volumes/manifests">v1.8.0</a></td>
+</tr>
+<tr>
+<td>KServe</td>
+<td>contrib/kserve/kserve</td>
+<td><a href="https://github.com/kserve/kserve/releases/tag/v0.13.0">v0.13.0</a></td>
+</tr>
+<tr>
+<td>KServe Models Web App</td>
+<td>contrib/kserve/models-web-app</td>
+<td><a href="https://github.com/kserve/models-web-app/tree/v0.13.0-rc.0/config">v0.13.0-rc.0</a></td>
+</tr>
+<tr>
+<td>Kubeflow Pipelines</td>
+<td>apps/pipeline/upstream</td>
+<td><a href="https://github.com/kubeflow/pipelines/tree/2.0.3/manifests/kustomize">2.0.3</a></td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente es también una matriz con versiones de componentes comunes que son
+utilizados por los diferentes proyectos de Kubeflow:</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Ruta de Manifiestos Locales</th>
+<th>Revisión Upstream</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Istio</td>
+<td>common/istio</td>
+<td><a href="https://github.com/istio/istio/releases/tag/1.17.5">1.17.5</a></td>
+</tr>
+<tr>
+<td>Knative</td>
+<td>common/knative/knative-serving <br /> common/knative/knative-eventing</td>
+<td><a href="https://github.com/knative/serving/releases/tag/knative-v1.10.2">1.10.2</a> <br /> <a href="https://github.com/knative/eventing/releases/tag/knative-v1.10.1">1.10.1</a></td>
+</tr>
+<tr>
+<td>Cert Manager</td>
+<td>common/cert-manager</td>
+<td><a href="https://github.com/cert-manager/cert-manager/releases/tag/v1.12.2">1.12.2</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="instalacion">Instalación</h2>
+<p>Se realizará desplegando los paquetes por separado, verficando que se estan instalando satisfactoriamente antes de proseguir con el siguiente.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Se utiliza un correo electrónico predeterminado (<code>example@gmv.com</code>) y una contraseña (<code>-</code>). Para cualquier despliegue de Kubeflow en producción, se deberá cambiar la identificación predeterminada siguiendo <a href="#cambiar-la-contrasena-predeterminada-del-usuario">la sección correspondiente</a>.</p>
+</div>
+<h3 id="prerrequisitos">Prerrequisitos</h3>
+<ul>
+<li><code>Kubernetes</code> (hasta <code>1.29.3</code>) con una <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClass</a> predeterminada</li>
+<li><code>kustomize</code> <a href="https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.3">5.0.3</a><ul>
+<li><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> Kubeflow no es compatible con versiones anteriores de Kustomize. Esto se debe a que necesita el campo <a href="https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/sortoptions/"><code>sortOptions</code></a>, que solo está disponible en Kustomize 5 y posteriores <a href="https://github.com/kubeflow/manifests/issues/2388">#2388</a>.</li>
+</ul>
+</li>
+<li><code>kubectl</code></li>
+</ul>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Los comandos <code>kubectl apply</code> pueden fallar en el primer intento. Esto es inherente a cómo funcionan Kubernetes y <code>kubectl</code> (por ejemplo, CR debe crearse después de que CRD esté listo). La solución es simplemente volver a ejecutar el comando hasta que tenga éxito. </p>
+</div>
+<hr />
+<h3 id="instalar-componentes">Instalar componentes</h3>
+<p>En esta sección, se procede a instalar cada componente oficial de Kubeflow (bajo <code>apps</code>) y cada servicio común (bajo <code>common</code>) por separado, usando solo <code>kubectl</code> y <code>kustomize</code>.</p>
+<p>El propósito de esta sección es proporcionar una descripción de cada componente y una idea de cómo se instala.</p>
+<hr />
+<p><strong>Nota de resolución de problemas</strong></p>
+<p>Se han observado errores como el siguiente al aplicar las kustomizaciones de diferentes componentes:
+<div class="highlight"><pre><span></span><code>error: resource mapping not found for name: &quot;&lt;RESOURCE_NAME&gt;&quot; namespace: &quot;&lt;SOME_NAMESPACE&gt;&quot; from &quot;STDIN&quot;: no matches for kind &quot;&lt;CRD_NAME&gt;&quot; in version &quot;&lt;CRD_FULL_NAME&gt;&quot;
+ensure CRDs are installed first
+</code></pre></div></p>
+<p>Esto se debe a que una kustomización aplica tanto un CRD como un CR muy rápidamente, y el CRD no ha alcanzado el estado de <a href="https://github.com/kubernetes/apiextensions-apiserver/blob/a7ee7f91a2d0805f729998b85680a20cfba208d2/pkg/apis/apiextensions/types.go#L276-L279"><code>Established</code></a> aún. Puede aprender más sobre esto en <a href="https://github.com/kubernetes/kubectl/issues/1117">este issue de kubectl</a> y en <a href="https://github.com/helm/helm/issues/4925">este issue de Helm</a>.</p>
+<p>Si se muestra este error, se recomienda volver a aplicar la kustomización del componente.</p>
+<hr />
+<h3 id="antes-de-comenzar">Antes de comenzar</h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Se recomienda encarecidamente revisar el estado de los pods tras la instalación de cada paquete, asegurandose que todos estan en estado <code>Ready</code> antes de continuar con el resto de la instalación. Así en caso de error, será mas sencillo identificar el problema y aplicar la solución correspondiente.</p>
+</div>
+<hr />
+<h4 id="cert-manager">Cert-Manager</h4>
+<p>Cert-Manager es utilizado por muchos componentes de Kubeflow para proporcionar certificados para
+webhooks de admisión.</p>
+<p>Instalar Cert-Manager:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/cert-manager/cert-manager/base
+kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>ready<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="s1">&#39;app in (cert-manager,webhook)&#39;</span><span class="w"> </span>--timeout<span class="o">=</span>180s<span class="w"> </span>-n<span class="w"> </span>cert-manager
+kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/cert-manager/kubeflow-issuer/base
+</code></pre></div>
+<p>En caso de que recibas este error:
+<div class="highlight"><pre><span></span><code>Error from server (InternalError): error when creating &quot;STDIN&quot;: Internal error occurred: failed calling webhook &quot;webhook.cert-manager.io&quot;: failed to call webhook: Post &quot;https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s&quot;: dial tcp 10.96.202.64:443: connect: connection refused
+</code></pre></div>
+Esto es porque el webhook aún no está listo para recibir solicitudes. Espera unos segundos y vuelve a intentar aplicar los manifiestos.</p>
+<p>Para más información sobre resolución de problemas, consulta <a href="https://cert-manager.io/docs/troubleshooting/webhook/">la documentación de Cert-Manager</a>.</p>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>cert-manager
+</code></pre></div>
+<h4 id="istio">Istio</h4>
+<p>Istio es utilizado por muchos componentes de Kubeflow para asegurar su tráfico, hacer cumplir
+la autorización de red y aplicar políticas de enrutamiento.</p>
+<p>Instalar Istio:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/istio/istio-crds/base
+kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/istio/istio-namespace/base
+kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/istio/istio-install/base
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>istio-system
+</code></pre></div>
+<h4 id="knative">Knative</h4>
+<p>Knative es utilizado por el componente oficial de Kubeflow, KServe.</p>
+<p>Instalar Knative Serving:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/knative/knative-serving/overlays/gateways
+kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/istio/cluster-local-gateway/base
+</code></pre></div>
+<h4 id="namespace-de-kubeflow">Namespace de Kubeflow</h4>
+<p>Crea el namespace donde vivirán los componentes de Kubeflow. Este namespace
+se llama <code>kubeflow</code>.</p>
+<p>Instalar el namespace de kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/kubeflow-namespace/base
+</code></pre></div>
+<h4 id="kubeflow-roles">Kubeflow Roles</h4>
+<p>Crea los ClusterRoles de Kubeflow, <code>kubeflow-view</code>, <code>kubeflow-edit</code> y
+<code>kubeflow-admin</code>. Los componentes de Kubeflow agregan permisos a estos
+ClusterRoles.</p>
+<p>Instalar los roles de kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/kubeflow-roles/base
+</code></pre></div>
+<h4 id="recursos-de-istio-para-kubeflow">Recursos de Istio para Kubeflow</h4>
+<p>Crea los recursos de Istio necesarios para Kubeflow. Esta kustomización actualmente
+crea un Istio Gateway llamado <code>kubeflow-gateway</code>, en el namespace <code>kubeflow</code>.
+Si deseas instalar con tu propio Istio, también necesitarás esta kustomización.</p>
+<p>Instalar recursos de istio:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/istio/kubeflow-istio-resources/base
+</code></pre></div>
+<h4 id="kubeflow-pipelines">Kubeflow Pipelines</h4>
+<p>Instalar los <a href="https://www.kubeflow.org/docs/components/pipelines/multi-user/">Multi-User Kubeflow Pipelines</a> como componente oficial de Kubeflow:</p>
+<p><div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/pipeline/upstream/env/cert-manager/platform-agnostic-multi-user
+</code></pre></div>
+Esto instala argo con el ejecutor emissary seguro para usar runasnonroot. Ten en cuenta que el instalador sigue siendo responsable de analizar los problemas de seguridad que surgen cuando los contenedores se ejecutan con acceso root y de decidir si los contenedores principales de los pipelines de kubeflow se ejecutan como runasnonroot. Se recomienda encarecidamente que los contenedores principales de los pipelines se instalen y ejecuten como runasnonroot y sin capacidades especiales para mitigar los riesgos de seguridad.</p>
+<h5 id="dependencias-del-multi-user-kubeflow-pipelines">Dependencias del Multi-User Kubeflow Pipelines</h5>
+<ul>
+<li>Istio + Recursos de Istio para Kubeflow</li>
+<li>Roles de Kubeflow</li>
+<li>AuthService OIDC (o servicio de autenticación específico del proveedor de la nube)</li>
+<li>Perfiles + KFAM</li>
+</ul>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<h4 id="kserve">KServe</h4>
+<p>KFServing fue renombrado a KServe.</p>
+<p>Instalar el componente KServe:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>contrib/kserve/kserve
+</code></pre></div>
+<p>Instalar la aplicación web de modelos:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>contrib/kserve/models-web-app/overlays/kubeflow
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<h4 id="central-dashboard">Central Dashboard</h4>
+<p>Instalar el componente oficial Central Dashboard de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/centraldashboard/upstream/overlays/kserve
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<h4 id="admission-webhook">Admission Webhook</h4>
+<p>Instalar el Admission Webhook para PodDefaults:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/admission-webhook/upstream/overlays/cert-manager
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<h4 id="notebooks">Notebooks</h4>
+<p>Instalar el componente oficial Notebook Controller de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/jupyter/notebook-controller/upstream/overlays/kubeflow
+</code></pre></div>
+<p>Instalar la aplicación web Jupyter de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/jupyter/jupyter-web-app/upstream/overlays/istio
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<h4 id="pvc-viewer-controller">PVC Viewer Controller</h4>
+<p>Instalar el componente oficial PVC Viewer Controller de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/pvcviewer-controller/upstream/default
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<h4 id="perfiles-kfam">Perfiles + KFAM</h4>
+<p>Instalar el controlador de perfiles y el Kubeflow Access-Management (KFAM) como componentes oficiales de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/profiles/upstream/overlays/kubeflow
+</code></pre></div>
+<h4 id="aplicacion-web-de-volumenes">Aplicación Web de Volúmenes</h4>
+<p>Instalar la aplicación web de volúmenes como componente oficial de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>apps/volumes-web-app/upstream/overlays/istio
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubeflow
+</code></pre></div>
+<hr />
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANTE</p>
+<p>Se deben revisar los siguientes ficheros para asegurarse de que las URLs están correctamente configuradas antes de continuar con la instalación:</p>
+<ul>
+<li>common/keycloak/base/config-map.yaml</li>
+<li>common/keycloak/base/deployment.yaml</li>
+<li>common/keycloak/overlays/istio/auth-certificates.yaml</li>
+<li>common/oidc-client/oidc-authservice/base/params.env</li>
+<li>common/oidc-client/oidc-authservice/base/statefulset.yaml</li>
+<li>ingress.yaml</li>
+</ul>
+</div>
+<hr />
+<h4 id="ingress">Ingress</h4>
+<p>Aplicar la configuración de Ingress para el clúster de Kubeflow:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ingress.yaml
+</code></pre></div>
+<h4 id="keycloak">Keycloak</h4>
+<p>Keycloak es un proveedor de identidad y acceso con soporte para OpenID Connect (OIDC) y SAML 2.0. En esta instalación, Keycloak se configurará para gestionar la autenticación y la autorización de los usuarios. Incluye múltiples opciones de backend de autenticación y permite la configuración de usuarios y roles según las necesidades específicas del entorno. Para cualquier despliegue de Kubeflow en producción, es esencial configurar correctamente los usuarios y las políticas de seguridad en Keycloak.</p>
+<p>Instalar Keycloak:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Para su correcta instalacíon es necesario el uso de la herramienta <code>jq</code>. En caso de no tenerla instalada, ejecutar el siguiente comando:</p>
+</div>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jq
+</code></pre></div>
+<p>Una vez verificado que se tiene instalada dicha herramienta, se puede proceder con la instalación:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/keycloak/overlays/istio
+kubectl<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>keycloak-cert<span class="w"> </span>-n<span class="w"> </span>auth<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;del(.metadata[&quot;namespace&quot;,&quot;creationTimestamp&quot;,&quot;resourceVersion&quot;,&quot;selfLink&quot;,&quot;uid&quot;,&quot;annotations&quot;])&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>-f<span class="w"> </span>-
+</code></pre></div>
+<p>Una vez instalado correctamente <code>Keycloak</code> se deberan realizar una serie de ajuestes en la configuracion de la herramienta.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Para acceder a la interfaz de <code>Keycloak</code> se utilizará la URL</p>
+<div class="highlight"><pre><span></span><code>https://keycloak-admin.ai.inesdata.upm/auth
+</code></pre></div>
+<p>para la cual será necesario haber establecido un tunel SSH previamente.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Se deberá crear el <code>Realm</code> que contiene la configuracíon necesaria para que la plataforme se integre correctamente con <code>Keycloak</code>. Para ello se puede descargar desde <a href="../../assets/realm-kubeflow.json" download><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.76 8.69a.76.76 0 0 0-.76.76V20.9c0 .42.34.76.76.76.19 0 .35-.06.48-.16l1.91-1.55 1.66 3.62c.13.27.4.43.69.43.11 0 .22 0 .33-.08l2.76-1.28c.38-.18.56-.64.36-1.01L17.28 18l2.41-.45a.88.88 0 0 0 .43-.26c.27-.32.23-.79-.12-1.08l-8.74-7.35-.01.01a.756.756 0 0 0-.49-.18M15 10V8h5v2h-5m-1.17-5.24 2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41M10 0h2v5h-2V0M3.93 14.66l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41m0-11.32 1.41-1.41 2.83 2.83-1.41 1.41-2.83-2.83M7 10H2V8h5v2"/></svg></span> aquí</a> .</p>
+<p>Para crearlo pulsar en el desplegable de la esquina superior izquierda y hacer <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.76 8.69a.76.76 0 0 0-.76.76V20.9c0 .42.34.76.76.76.19 0 .35-.06.48-.16l1.91-1.55 1.66 3.62c.13.27.4.43.69.43.11 0 .22 0 .33-.08l2.76-1.28c.38-.18.56-.64.36-1.01L17.28 18l2.41-.45a.88.88 0 0 0 .43-.26c.27-.32.23-.79-.12-1.08l-8.74-7.35-.01.01a.756.756 0 0 0-.49-.18M15 10V8h5v2h-5m-1.17-5.24 2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41M10 0h2v5h-2V0M3.93 14.66l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41m0-11.32 1.41-1.41 2.83 2.83-1.41 1.41-2.83-2.83M7 10H2V8h5v2"/></svg></span> click sobre <code>Create realm</code>.</p>
+<p><img alt="create_realm" src="../../assets/create_realm1.png" /></p>
+<p>En la pantalla que aparece, clickar sobre <code>Browse</code>, seleccionar el <code>Realm</code> descargado, ponerle un nombre, y hacer <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.76 8.69a.76.76 0 0 0-.76.76V20.9c0 .42.34.76.76.76.19 0 .35-.06.48-.16l1.91-1.55 1.66 3.62c.13.27.4.43.69.43.11 0 .22 0 .33-.08l2.76-1.28c.38-.18.56-.64.36-1.01L17.28 18l2.41-.45a.88.88 0 0 0 .43-.26c.27-.32.23-.79-.12-1.08l-8.74-7.35-.01.01a.756.756 0 0 0-.49-.18M15 10V8h5v2h-5m-1.17-5.24 2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41M10 0h2v5h-2V0M3.93 14.66l2.83-2.83 1.41 1.41-2.83 2.83-1.41-1.41m0-11.32 1.41-1.41 2.83 2.83-1.41 1.41-2.83-2.83M7 10H2V8h5v2"/></svg></span> click en <code>Create</code>.</p>
+<p><img alt="create_realm" src="../../assets/create_realm2.png" /></p>
+</div>
+<p>Con el <code>Realm</code> en funcionamiento se deberá añadir la URL contenida en la variable <code>REDIRECT_URL</code> del fichero <code>common/oidc-client/oidc-authservice/base/params.env</code> en la sección <code>Valid redirect URIs</code> de la configuración del cliente <code>kubeflow-oidc-authservice</code> tal y como se muestra en la siguiente imagen:</p>
+<p><img alt="REDIRECT_URL" src="../../assets/redirect_url.png" /></p>
+<p>En esa misma ventana verificar también el parámetro <code>Front-channel logout URL</code> y asegurarse de que contiene la URL de acceso a la plataforma.</p>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>auth
+</code></pre></div>
+<h4 id="authservice">AuthService</h4>
+<p>El AuthService OIDC extiende las capacidades de tu Ingress-Gateway de Istio, para que pueda funcionar como un cliente OIDC:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Antes de proceder con la instalación del AuthService, completar el parametro <code>CLIENT_SECRET</code> ubicado en <code>common/oidc-client/oidc-authservice/base/secret_params.env</code> con el valor que se encuentra en la UI de Keycloak en la sección <strong>Clients -&gt; kubeflow-oidc-authservice -&gt; Credentials -&gt; Client Secret</strong>.</p>
+<p>Una vez guardados los cambios se puede proseguir con la instalación del OIDC AuthService.</p>
+</div>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span>common/oidc-client/oidc-authservice/base
+</code></pre></div>
+<p>Verificación de instalación correcta:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>istio-system
+</code></pre></div>
+<h4 id="namespace-del-usuario">Namespace del Usuario</h4>
+<p>Se utilizará el script <code>kubeflow-admin.sh</code>.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Tras seguir estos pasos y comprobar que se puede acceder correctamente a Keycloak al Dashboard de Kubeflow con las credenciales correspondientes, se puede dar por finalizada la instalacion de la plataforma.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["tabs", "navigation.instant", "navigation.tabs", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+    
+  </body>
+</html>
