@@ -50,6 +50,9 @@ create_profile() {
     envsubst < ./common/user-namespace/base/pod-default.yaml | kubectl apply -f -
     # applying limit-range
     envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
+    # We apply the command again because otherwise the notebooks will not run up.
+    sleep 3
+    envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
 
     profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
     
@@ -130,6 +133,9 @@ import_profile_list(){
       # applying pod-default
       envsubst < ./common/user-namespace/base/pod-default.yaml | kubectl apply -f -
       # applying limit-range
+      envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
+      # We apply the command again because otherwise the notebooks will not run up.
+      sleep 3
       envsubst < ./common/user-namespace/base/limit-range.yaml | kubectl apply -f -
         
       profiles=$(kubectl get profiles -o jsonpath='{.items[*].metadata.name}')
