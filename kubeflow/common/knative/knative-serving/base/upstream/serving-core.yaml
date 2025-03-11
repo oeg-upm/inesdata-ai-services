@@ -4776,6 +4776,7 @@ data:
     example.org: |
       selector:
         app: nonprofit
+  kserve.ai.inesdata-project.eu: ''
 ---
 apiVersion: v1
 kind: ConfigMap
