@@ -2,6 +2,12 @@
 
 ---
 
+## 1.1.1 <small>2025/03/11</small>
+
+- Se corrige bug en la sección Endpoints.
+- Se corrige bug al cargar notebooks de VS Code.
+- Se agrega soporte para imágenes de RStudio.
+
 ## 1.1.0 <small>2024/10/01</small>
 
 - Migración a nuevo clúster. Se consigue un aumento de rendimiento general de la plataforma.
