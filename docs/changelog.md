@@ -1,6 +1,10 @@
 # **Changelog**
 
 ---
+## 1.2.0 <small>2025/04/16</small>
+
+- Se actualiza la `Kserve` a la versión `0.14.1`.
+- Cambios menores en la gestión de certificados. 
 
 ## 1.1.1 <small>2025/03/11</small>
 

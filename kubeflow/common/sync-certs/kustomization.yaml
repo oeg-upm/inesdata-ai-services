@@ -1,0 +1,6 @@
+namespace: sync-certs
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - sync-certs-rbac.yaml
+  - cron-job.yaml

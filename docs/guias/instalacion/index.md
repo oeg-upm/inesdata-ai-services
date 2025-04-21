@@ -12,7 +12,6 @@ El repositorio está organizado en tres (3) directorios principales, que incluye
 | - | - |
 | `apps` | Componentes oficiales de Kubeflow, mantenidos por los respectivos Grupos de Trabajo de Kubeflow |
 | `common` | Servicios comunes, mantenidos por el Grupo de Trabajo de Manifiestos |
-| `contrib` | Aplicaciones contribuidas por terceros, que se mantienen externamente y no forman parte de un Grupo de Trabajo de Kubeflow |
 
 ## Versiones de componentes de Kubeflow
 
@@ -29,8 +28,8 @@ La siguiente matriz muestra la versión de git que se incluye para cada componen
 | PodDefaults Webhook | apps/admission-webhook/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/admission-webhook/manifests) |
 | Jupyter Web App | apps/jupyter/jupyter-web-app/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/jupyter/manifests) |
 | Volumes Web App | apps/volumes-web-app/upstream | [v1.8.0](https://github.com/kubeflow/kubeflow/tree/v1.8.0/components/crud-web-apps/volumes/manifests) |
-| KServe | contrib/kserve/kserve | [v0.13.0](https://github.com/kserve/kserve/releases/tag/v0.13.0) |
-| KServe Models Web App | contrib/kserve/models-web-app | [v0.13.0-rc.0](https://github.com/kserve/models-web-app/tree/v0.13.0-rc.0/config) |
+| KServe | apps/kserve/kserve | [v0.14.1](https://github.com/kserve/kserve/releases/tag/v0.14.1) |
+| KServe Models Web App | apps/kserve/models-web-app | [v0.14.0](https://github.com/kserve/models-web-app/tree/v0.14.0/config) |
 | Kubeflow Pipelines | apps/pipeline/upstream | [2.0.3](https://github.com/kubeflow/pipelines/tree/2.0.3/manifests/kustomize) |
 
 La siguiente es también una matriz con versiones de componentes comunes que son
@@ -214,13 +213,13 @@ KFServing fue renombrado a KServe.
 Instalar el componente KServe:
 
 ```sh
-kubectl apply -k contrib/kserve/kserve
+kubectl apply -k apps/kserve/kserve
 ```
 
 Instalar la aplicación web de modelos:
 
 ```sh
-kubectl apply -k contrib/kserve/models-web-app/overlays/kubeflow
+kubectl apply -k apps/kserve/models-web-app/overlays/kubeflow
 ```
 
 Verificación de instalación correcta:
@@ -412,6 +411,24 @@ Verificación de instalación correcta:
 
 ```sh
 kubectl get pods -n istio-system
+```
+
+#### CronJob
+
+El CronJob automatiza la renovación del certificado del `AuthService`, para mantenerlo alineado con el generado por el `Cert-Manager` para `Keycloak`.
+
+!!! info
+
+    Para mantener el certificado del `AuthService` sincronizado con el certificado de `Keycloak`, se utiliza un CronJob que compara el contenido del campo tls.crt del secret en el namespace `auth` y en `istio-system`. Si se detecta un cambio, el `CronJob` actualiza el secret en `istio-system` y reinicia el pod asociado al `AuthService` para que reciba la nueva configuración. Se recomienda verificar regularmente el correcto funcionamiento del proceso consultando los logs del `CronJob` y el estado del pod en `istio-system`.
+
+```sh
+kubectl apply -k common/sync-certs/
+```
+
+Verificación de instalación correcta:
+
+```sh
+kubectl get cronjobs -n sync-certs
 ```
 
 #### Namespace del Usuario
