@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sync-certs-cronjob
+  namespace: sync-certs
+spec:
+  schedule: "*/5 * * * *"  # Se ejecuta cada 5 minutos
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: sync-certs-sa
+          restartPolicy: OnFailure
+          volumes:
+            # Volumen que contiene el ConfigMap (solo lectura)
+            - name: config-script
+              configMap:
+                name: sync-certs-script
+            # Volumen vacío para copiar el script y tener acceso de escritura
+            - name: script-volume
+              emptyDir: {}
+          initContainers:
+          - name: init-copy-script
+            image: alpine:3.14  # Imagen ligera que incluye sh y chmod
+            command:
+              - /bin/sh
+              - -c
+              - |
+                cp /config-sync/sync-secret.sh /writable/ && chmod +x /writable/sync-secret.sh
+            volumeMounts:
+              - name: config-script
+                mountPath: /config-sync
+                readOnly: true
+              - name: script-volume
+                mountPath: /writable
+          containers:
+          - name: sync-container
+            image: bitnami/kubectl:1.25  # Asegúrate que contiene kubectl y jq, o personaliza tu imagen
+            command:
+              - /bin/sh
+              - -c
+              - |
+                /writable/sync-secret.sh
+            volumeMounts:
+              - name: script-volume
+                mountPath: /writable
