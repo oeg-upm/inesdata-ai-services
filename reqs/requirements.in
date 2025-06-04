@@ -1,0 +1,6 @@
+mkdocs==1.5.3               # Documentation
+mkdocs-material==9.5.13     # Documentation theme
+mkdocs-jupyter==0.24.6      # Jupyter notebooks
+mkdocs-markdownextradata-plugin
+mkdocs-same-dir
+markdown-include
